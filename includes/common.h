@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 16:27:19 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:16:17 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_game
 	int			right;
 }				t_game;
 
-int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
+//int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
 
 /*	parsing.c	*/
 int		parsing(int argc, char** argv);
