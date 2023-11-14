@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 15:57:58 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:27:19 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ typedef struct s_game
 	int			lm;
 	int			idx[2];
 	int			end;
+	int			forward;
+	int			backward;
+	int			left;
+	int			right;
 }				t_game;
 
 int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
@@ -69,6 +73,9 @@ int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
 /*	parsing.c	*/
 int		parsing(int argc, char** argv);
 
-
+/*	movement.c	*/
+int		key_release(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		update_pos(t_game *game);
 
 #endif
