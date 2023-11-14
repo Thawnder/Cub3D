@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 15:35:41 by ldeville         ###   ########.fr       */
+/*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
+/*   Updated: 2023/11/14 15:38:40 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
-
-int	main(int argc, char **argv)
+int	parsing(int argc, char **argv)
 {
-	if (!parsing(argc, argv))
-		return (EXIT_FAILURE);
+	if (argc != 2)
+		return (printf("Error\nPlease enter a valid map"))
 
 
-	return (0);
+
 }
