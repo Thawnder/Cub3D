@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:40:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/10/04 13:24:26 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:15:46 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "Printf/ft_printf.h"
+# include "get_next_line.h"
 
 typedef struct s_list
 {
