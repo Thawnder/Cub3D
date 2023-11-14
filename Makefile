@@ -9,7 +9,7 @@ LIBFT = ${LIBFT_PATH}/libft.a
 MINILIBX = ${MINILIBX_PATH}libmlx.a
 MINILIBX_PATH = ./includes/minilibx-linux/
 
-FILES = main.c parsing.c
+FILES = main.c parsing.c movement.c raycast.c
 
 SRCS_DIR = srcs/
 INCL = -I ./includes
