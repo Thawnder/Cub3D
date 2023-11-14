@@ -2,7 +2,7 @@ MAKEFLAGS += --silent
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT_PATH = Libft
+LIBFT_PATH = includes/Libft
 LIB = -L${LIBFT_PATH} -lft
 LIBFT = ${LIBFT_PATH}/libft.a
 
