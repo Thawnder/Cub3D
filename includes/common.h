@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 15:42:20 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:57:58 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,10 @@ typedef struct s_game
 }				t_game;
 
 int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
+
+/*	parsing.c	*/
+int		parsing(int argc, char** argv);
+
+
 
 #endif

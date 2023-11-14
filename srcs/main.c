@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 15:44:04 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:58:16 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 	(void)argv;
 	t_game	*game;
 
+	if (!parsing(argc, argv))
+		return (EXIT_FAILURE);
 	game = ft_calloc(sizeof(t_game), 1);
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
