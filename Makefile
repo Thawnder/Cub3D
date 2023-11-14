@@ -3,8 +3,11 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_PATH = includes/Libft
-LIB = -L${LIBFT_PATH} -lft
+LIB = -L${LIBFT_PATH} -lft -L${MINILIBX_PATH} -lmlx -lXext -lX11
 LIBFT = ${LIBFT_PATH}/libft.a
+
+MINILIBX = ${MINILIBX_PATH}libmlx.a
+MINILIBX_PATH = ./includes/minilibx-linux/
 
 FILES = main.c
 
@@ -16,13 +19,18 @@ OBJS_EXEC = ${SRCS:.c=.o}
 EXEC = cub3d
 
 
-all: ${LIBFT} ${EXEC}
+all: ${LIBFT} ${MINILIBX} ${EXEC}
 	echo "\033[7;32m~| Tous les fichiers sont à jour ! |~\033[0m"\
 
 ${LIBFT}:
 	@${MAKE} -sC ${LIBFT_PATH} all\
                 && echo "\033[1;32m~| Compilation de la lib : OK |~\033[0m"\
                 || echo "\033[1;31m~| Compilation de la lib : Erreur |~\033[0m"
+
+${MINILIBX}:
+	make -sC ${MINILIBX_PATH} \
+                && echo "\033[1;32m~| Compilation de la Minilibx : OK |~\033[0m"\
+                || echo "\033[1;31m~| Compilation de la Minilibx : Erreur |~\033[0m"
 
 ${EXEC}: ${OBJS_EXEC}
 	${CC} ${CFLAGS} ${INCL} ${OBJS_EXEC} ${LIB} -o ${EXEC} \
@@ -34,6 +42,7 @@ $(SRCS_DIR)%.o: $(SRCS_DIR)%.c
 
 clean:
 	${MAKE} -sC ${LIBFT_PATH} fclean
+	${MAKE} -sC ${MINILIBX_PATH} clean
 	rm -f ${OBJS_BONUS}
 	rm -f ${OBJS_EXEC}\
 		&& echo "\033[1;33m~| Nettoyage des .o : OK |~\033[0m"\
