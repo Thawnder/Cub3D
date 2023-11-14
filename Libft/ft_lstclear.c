@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bpleutin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 10:56:54 by ldeville         ###   ########.fr       */
+/*   Created: 2023/02/10 10:14:50 by bpleutin          #+#    #+#             */
+/*   Updated: 2023/02/10 10:37:58 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-#define COMMON_H
+#include "libft.h"
 
-# include "../Libft/libft.h"
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*elt;
 
-
-#endif
+	if (lst && del)
+	{
+		while (*lst)
+		{
+			elt = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = elt;
+		}
+	}
+}

@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bpleutin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 10:56:54 by ldeville         ###   ########.fr       */
+/*   Created: 2023/02/02 11:37:26 by bpleutin          #+#    #+#             */
+/*   Updated: 2023/02/03 16:54:43 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-#define COMMON_H
+#include <stdlib.h>
 
-# include "../Libft/libft.h"
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
 
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(s + i) = 0;
+		i++;
+	}
+}

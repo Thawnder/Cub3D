@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/14 10:49:33 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:55:47 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 
-	write(1, "Salut !\n", 8);
+	ft_printf("Salut !\n");
 	
 	return (0);
 }
