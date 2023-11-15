@@ -1,6 +1,6 @@
 MAKEFLAGS += --silent
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_PATH = includes/Libft
 LIB = -L${LIBFT_PATH} -lft -L${MINILIBX_PATH} -lmlx -lXext -lX11
@@ -9,7 +9,7 @@ LIBFT = ${LIBFT_PATH}/libft.a
 MINILIBX = ${MINILIBX_PATH}libmlx.a
 MINILIBX_PATH = ./includes/minilibx-linux/
 
-FILES = main.c parsing.c
+FILES = main.c parsing.c parsing2.c utils.c
 
 SRCS_DIR = srcs/
 INCL = -I ./includes

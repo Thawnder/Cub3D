@@ -6,36 +6,11 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:15:07 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/14 16:21:03 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:08:36 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strjoin2(char *s1, char *s2)
-{
-	char	*res;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
-	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!res)
-		return (NULL);
-	j = 0;
-	while (s1[i])
-		res[i++] = s1[j++];
-	j = 0;
-	while (s2[j])
-		res[i++] = s2[j++];
-	return (res[i] = 0, free(s1), res);
-}
+#include "get_next_line.h"
 
 static char	*ft_cut_line(char *str, char *line)
 {
@@ -44,13 +19,13 @@ static char	*ft_cut_line(char *str, char *line)
 
 	res = NULL;
 	if (str)
-		n = ft_strlen(str);
+		n = ft_strlen2(str);
 	else
 		n = 0;
 	if (!line || !line[n])
 		return (free(line), res);
 	if (line[n])
-		res = ft_substr(line, n, ft_strlen(line) - n);
+		res = ft_substr2(line, n, ft_strlen2(line) - n);
 	return (free(line), res);
 }
 
@@ -62,7 +37,7 @@ static char	*ft_read_line(int fd, char *line, char **res)
 
 	buffer = malloc(BUFFER_SIZE + 1);
 	r = 1;
-	while (r != 0 && !ft_strchr(line, '\n'))
+	while (r != 0 && !ft_strchr2(line, '\n'))
 	{
 		r = read(fd, buffer, BUFFER_SIZE);
 		buffer[r] = '\0';
@@ -74,7 +49,7 @@ static char	*ft_read_line(int fd, char *line, char **res)
 	{
 		while (line[n] && line[n] != '\n')
 			n++;
-		*res = ft_substr(line, 0, n + 1);
+		*res = ft_substr2(line, 0, n + 1);
 	}
 	else
 		*res = NULL;

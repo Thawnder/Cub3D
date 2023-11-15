@@ -48,7 +48,8 @@ SRC = ft_isalpha.c \
       ft_lstclear.c \
       ft_lstiter.c \
       ft_lstmap.c \
-      get_next_line.c 
+      get_next_line.c \
+      get_next_line_utils.c 
 
 FLAGS = -Wall -Wextra -Werror -g
 
