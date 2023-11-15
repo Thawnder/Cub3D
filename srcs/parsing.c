@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 12:23:20 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:07:45 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ static int	do_parsing(int file, char *nfile, t_game *g)
 	printf("RGB - FLOOR 	- %i, %i, %i\n", g->rgb[0][0], g->rgb[0][1], g->rgb[0][2]);
 	printf("RGB - CEILING 	- %i, %i, %i\n", g->rgb[1][0], g->rgb[1][1], g->rgb[1][2]);
 	i = 0;
-	printf("\n MAP :\n");
-	while (g->map[i])
+	printf("\nMAP :\n");
+	while (g->map[i][0])
 		printf("%s\n", g->map[i++]);
 
 	return (1);
@@ -117,5 +117,7 @@ int	parsing(int argc, char **argv, t_game *game)
 		return (printf("Error\nCould not open %s'\n", argv[1]), 0);
 	if (!do_parsing(file, argv[1], game))
 		return (close(file), 0);
+	if (!check_map(game))
+		return (0);
 	return (close(file), 1);
 }

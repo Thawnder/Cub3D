@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 12:33:02 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:08:11 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	find_map(int file, int *size)
 		y++;
 	}
 	if (!line || line[i] != '1')
-		return (free(line), close(file), printf("Error\nError while parsing the map.\n"), 0);
+		return (free(line), close(file), printf("Error\nError parsing.\n"), 0);
 	while (line)
 	{
 		free(line);
@@ -41,30 +41,58 @@ static int	find_map(int file, int *size)
 	return (close(file), free(line), y);
 }
 
+void	resize_map(t_game *g)
+{
+	int		y;
+	int		max_len;
+	char	*tmp;
+
+	max_len = 0;
+	y = -1;
+	while (g->map[++y][0])
+	{
+		if (max_len < (int)ft_strlen(g->map[y]))
+			max_len =  ft_strlen(g->map[y]);
+	}
+	y = -1;
+	while (g->map[++y][0])
+	{
+		if ((int)ft_strlen(g->map[y]) != max_len)
+		{
+			tmp = ft_calloc(sizeof(char), max_len);
+			ft_strlcpy(tmp, g->map[y], max_len);
+			ft_memset(&tmp[ft_strlen(tmp)], ' ', max_len);
+			free(g->map[y]);
+			g->map[y] = tmp;
+		}
+	}
+}
+
 int	set_map(int file, char *nfile, t_game *g)
 {
 	char	*line;
-	int		iMap;
+	int		i_map;
 	int		size;
 
 	size = 0;
-	iMap = find_map(file, &size);
+	i_map = find_map(file, &size);
 	file = open(nfile, O_RDONLY);
 	line = get_next_line(file);
 	g->map = calloc(sizeof(char *), size + 1);
 	size = 0;
-	while (size++ < iMap)
+	while (size++ < i_map)
 	{
 		free(line);
 		line = get_next_line(file);
 	}
 	size = -1;
-	while (line && ++size >= 0)
+	while (++size >= 0 && line)
 	{
 		g->map[size] = calloc(sizeof(char), ft_strlen(line) + 1);
 		set_line(g, line, size);
 		line = get_next_line(file);
 	}
 	g->map[size] = calloc(sizeof(char), 1);
-	return (1);
+	resize_map(g);
+	return (close(file), 1);
 }

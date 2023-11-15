@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 12:34:43 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:27:46 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ int		parsing(int argc, char** argv, t_game *game);
 
 /*	parsing2.c	*/
 int		set_map(int file, char *nfile, t_game *g);
+
+/*	check.c	*/
+int		check_map(t_game *g);
 
 /*	utils.c	*/
 int		space_until(char *str);
