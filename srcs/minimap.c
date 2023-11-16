@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:43:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 19:36:27 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:40:38 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	find_color(char c)
 	}
 	return (0);
 }
-
 
 void	generate_minimap(t_game *g)
 {
