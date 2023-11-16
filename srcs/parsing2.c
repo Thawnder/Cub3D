@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 15:09:48 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:20:39 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,11 @@ int	set_map(int file, char *nfile, t_game *g)
 	g->map[size] = ft_calloc(sizeof(char), 1);
 	resize_map(g);
 	return (close(file), 1);
+}
+
+int	parsing_2(t_game *game)
+{
+	if (!add_texture(game))
+		return (0);
+	return (1);
 }

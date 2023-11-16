@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 15:35:39 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:19:52 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,6 @@ int	parsing(int argc, char **argv, t_game *game)
 	if (!do_parsing(file, argv[1], game))
 		return (close(file), 0);
 	if (!check_map(game))
-		return (0);
-	if (!add_texture(game))
 		return (0);
 	return (close(file), 1);
 }
