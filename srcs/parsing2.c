@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 17:20:39 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:10:02 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,17 @@ int	set_map(int file, char *nfile, t_game *g)
 	return (close(file), 1);
 }
 
+void	add_info(t_game *g)
+{
+	g->x_len = (int)ft_strlen(g->map[0]);
+	g->y_len = (int)ft_ylen(g->map);
+	g->ray = ft_calloc(sizeof(t_ray), 1);
+}
+
 int	parsing_2(t_game *game)
 {
 	if (!add_texture(game))
 		return (0);
+	add_info(game);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:34:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 15:21:43 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:38:43 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,18 @@ void	free_all(t_game *g)
 		free_map(g);
 	if (g->img)
 		ft_free_img(g);
-	mlx_destroy_window(g->mlx, g->win);
-	mlx_destroy_display(g->mlx);
-	free(g->mlx);
+	if (g->minimap)
+	{
+		mlx_destroy_image(g->mlx, g->minimap->ptr);
+		free(g->minimap);
+	}
+	if (g->ray)
+		free(g->ray);
+	if (g->mlx)
+	{
+		mlx_destroy_window(g->mlx, g->win);
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
 	free(g);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 17:56:21 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:22:37 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include <math.h>
 # include <stdint.h>
 
-# define SCREENWIDTH 640
-# define SCREENHEIGHT 480
+# define SCREENWIDTH 1920
+# define SCREENHEIGHT 1080
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define MAPWIDTH 24
@@ -105,6 +105,7 @@ typedef struct s_game
 	char		**tex;
 	int			rgb[2][3];
 	t_data		*img;
+	t_data		*minimap;
 	t_ray		*ray;
 	int			lm;
 	int			idx[2];
