@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 19:10:02 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 21:59:55 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,28 @@ int	set_map(int file, char *nfile, t_game *g)
 
 void	add_info(t_game *g)
 {
+	int	x;
+	int	y;
+
+	y = -1;
+	g->ray = ft_calloc(sizeof(t_ray), 1);
+	while (g->map[++y][0])
+	{
+		x = 0;
+		while (g->map[y][x])
+		{
+			if (g->map[y][x] == 'N' || g->map[y][x] == 'S'
+				|| g->map[y][x] == 'E' || g->map[y][x] == 'W')
+			{
+				g->ray->pos_x = x + 0.5;
+				g->ray->pos_y = y + 0.5;
+				break ;
+			}
+			x++;
+		}
+	}
 	g->x_len = (int)ft_strlen(g->map[0]);
 	g->y_len = (int)ft_ylen(g->map);
-	g->ray = ft_calloc(sizeof(t_ray), 1);
 }
 
 int	parsing_2(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 19:22:37 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 21:45:21 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include <math.h>
 # include <stdint.h>
 
-# define SCREENWIDTH 1920
-# define SCREENHEIGHT 1080
+# define SCREENWIDTH 1280
+# define SCREENHEIGHT 720
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define MAPWIDTH 24
