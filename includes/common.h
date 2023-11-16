@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 17:25:36 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:31:43 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <limits.h>
+# include <float.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -49,7 +51,6 @@
 # define FLOOR 0
 # define CEILING 1
 
-
 typedef struct s_data
 {
 	void	*ptr;
@@ -61,6 +62,40 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+typedef struct s_ray
+{
+	double		camera_x; //x-coordinate in camera space
+	double		raydir_x; // direction 
+	double		raydir_y;
+	double		plane_x;
+	double		plane_y; //the 2d raycaster version of camera plane
+	double		sidedist_x; //length of ray from current position to next x or y-side
+	double		sidedist_y;
+	double		deltadist_x; //length of ray from one x or y-side to next x or y-side
+	double		deltadist_y;
+	double		perpwalldist;
+	double		wall_x;
+	int			tex_num;
+	int			draw_start;
+	int			draw_end;
+	int			step_x; //what direction to step in x or y-direction (either +1 or -1)
+	int			step_y;
+	int			hit; //was there a wall hit?
+	int			side; //was a NS or a EW wall hit?
+	int			line_height;
+	int			pitch;
+	double		step;
+	double		pos_x; //x and y start position
+	double		pos_y;
+	double		dir_x; //x and y start position
+	double		dir_y;
+	int			map_x; //which box of the map we're in
+	int			map_y;
+	int			tex_x;
+	int			tex_y;
+	double		tex_pos;
+}			t_ray;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -69,6 +104,7 @@ typedef struct s_game
 	char		**tex;
 	int			rgb[2][3];
 	t_data		*img;
+	t_ray		*ray;
 	int			lm;
 	int			idx[2];
 	int			end;
@@ -79,6 +115,7 @@ typedef struct s_game
 	int			y_len;
 	int			x_len;
 }				t_game;
+
 
 //int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
 
