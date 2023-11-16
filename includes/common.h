@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 17:20:46 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:25:36 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_game
 	int			backward;
 	int			left;
 	int			right;
+	int			y_len;
+	int			x_len;
 }				t_game;
 
 //int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
