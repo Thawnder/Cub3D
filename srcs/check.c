@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:14:37 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 14:45:12 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:20:06 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static int	check_uplow_wall(char **map)
 	int	y;
 
 	y = -1;
+	i = 0;
 	while (map[++y][0])
 	{
 		while (map[y][i] && map[y][i] == ' ')

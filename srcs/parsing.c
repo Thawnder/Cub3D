@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 14:39:42 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:10:41 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	do_parsing(int file, char *nfile, t_game *g)
 	i = 0;
 	printf("\nMAP :\n");
 	while (g->map[i][0])
-		printf("%s\n", g->map[i++]);
+		printf("|%s|\n", g->map[i++]);
 
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 14:32:40 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:22:20 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	/*mlx_loop_hook(game->mlx, &update_pos, game);
 	mlx_key_hook(game->win, 2, 1L << 0, &key_press, game);
 	mlx_key_hook(game->win, 3, 1L << 1, &key_release, game);*/
-	mlx_hook(game->win, 17, 0, &ft_close, &game);
+	mlx_hook(game->win, 17, 0, &ft_close, game);
 	mlx_loop(game->mlx);
 	free_all(game);
 	return (0);
