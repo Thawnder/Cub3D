@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 17:38:44 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:56:21 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,6 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
-typedef struct s_game
-{
-	void		*mlx;
-	void		*win;
-	char		**map;
-	char		**tex;
-	int			rgb[2][3];
-	t_data		*img;
-	int			lm;
-	int			idx[2];
-	int			end;
-	int			forward;
-	int			backward;
-	int			left;
-	int			right;
-}				t_game;
-
 typedef struct s_ray
 {
 	double		camera_x; //x-coordinate in camera space
@@ -113,6 +96,27 @@ typedef struct s_ray
 	double		tex_pos;
 	int32_t		color;
 }			t_ray;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	char		**tex;
+	int			rgb[2][3];
+	t_data		*img;
+	t_ray		*ray;
+	int			lm;
+	int			idx[2];
+	int			end;
+	int			forward;
+	int			backward;
+	int			left;
+	int			right;
+	int			y_len;
+	int			x_len;
+}				t_game;
+
 
 //int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
 
