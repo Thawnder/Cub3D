@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 14:08:31 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:34:54 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_game
 	char		**map;
 	char		**tex;
 	int			rgb[2][3];
-	t_data		**img;
+	t_data		*img;
 	int			lm;
 	int			idx[2];
 	int			end;
@@ -100,6 +100,10 @@ char	*delete_endl(char *str);
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
 int		update_pos(t_game *game);
+
+/*	texture.c	*/
+int		try_texture(t_game *g);
+int		add_texture(t_game *g);
 
 /*	free.c	*/
 void	free_map(t_game *g);

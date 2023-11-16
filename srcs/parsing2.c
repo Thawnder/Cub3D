@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 11:39:05 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:47:51 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	set_map(int file, char *nfile, t_game *g)
 	i_map = find_map(file, &size);
 	file = open(nfile, O_RDONLY);
 	line = get_next_line(file);
-	g->map = calloc(sizeof(char *), size + 1);
+	g->map = ft_calloc(sizeof(char *), size + 1);
 	size = 0;
 	while (size++ < i_map)
 	{
@@ -82,11 +82,11 @@ int	set_map(int file, char *nfile, t_game *g)
 	size = -1;
 	while (++size >= 0 && line)
 	{
-		g->map[size] = calloc(sizeof(char), ft_strlen(line) + 1);
+		g->map[size] = ft_calloc(sizeof(char), ft_strlen(line) + 1);
 		set_line(g, line, size);
 		line = get_next_line(file);
 	}
-	g->map[size] = calloc(sizeof(char), 1);
+	g->map[size] = ft_calloc(sizeof(char), 1);
 	resize_map(g);
 	return (close(file), 1);
 }
