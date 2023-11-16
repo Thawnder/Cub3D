@@ -59,13 +59,28 @@ void	generate_minimap(t_game *g)
 
 void	minimap(t_game *g)
 {
+	int	optx;
+	int	opty;
+
+	optx = (int)(g->ray->pos_x) * 4 + 54;
+	opty = (int)(g->ray->pos_y) * 4 + 54;
 	if (!g->minimap)
 	{
 		g->minimap = ft_calloc(sizeof(t_data), 1);
 		generate_minimap(g);
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->minimap->ptr, 50, 50);
-	ft_printf("test %d", g->ray->pos_x);
-	mlx_pixel_put(g->mlx, g->win, g->ray->pos_x * g->x_len + 54,
-		g->ray->pos_y * g->y_len + 54, 0xffd5a1);
+	if (g->ray->pos_x - (int)g->ray->pos_x > 0.750)
+		optx += 3;
+	else if (g->ray->pos_x - (int)g->ray->pos_x > 0.500)
+		optx += 2;
+	else if (g->ray->pos_x - (int)g->ray->pos_x > 0.250)
+		++optx;
+	if (g->ray->pos_y - (int)g->ray->pos_y > 0.750)
+		opty += 3;
+	else if (g->ray->pos_y - (int)g->ray->pos_y > 0.500)
+		opty += 2;
+	else if (g->ray->pos_y - (int)g->ray->pos_y > 0.250)
+		++opty;
+	mlx_pixel_put(g->mlx, g->win, optx, opty, 0xffd5a1);
 }
