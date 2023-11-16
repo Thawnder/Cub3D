@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 15:10:41 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:35:39 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	do_parsing(int file, char *nfile, t_game *g)
 		|| !find_element(open(nfile, O_RDONLY), "EA ", EA, g)
 		|| !find_rgb(open(nfile, O_RDONLY), "F ", FLOOR, g)
 		|| !find_rgb(open(nfile, O_RDONLY), "C ", CEILING, g)
-		/*|| !try_texture(g)*/
+		|| !try_texture(g)
 		|| !set_map(open(nfile, O_RDONLY), nfile, g))
 		return (0);
 
@@ -120,7 +120,7 @@ int	parsing(int argc, char **argv, t_game *game)
 		return (close(file), 0);
 	if (!check_map(game))
 		return (0);
-	/*if (!add_texture(game))
-		return (0);*/
+	if (!add_texture(game))
+		return (0);
 	return (close(file), 1);
 }

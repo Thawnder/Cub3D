@@ -1,10 +1,10 @@
-NO ./path_to_the_north_texture
+NO ./textures/bluestone.xpm
 
-WE ./path_to_the_west_texture
+WE ./textures/colorstone.xpm
 
-SO ./path_to_the_south_texture
+SO ./textures/greystone.xpm
 
-EA ./path_to_the_east_texture
+EA ./textures/redbrick.xpm
 
 
 C 225,30,0

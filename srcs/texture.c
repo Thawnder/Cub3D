@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:12:46 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 14:38:51 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:36:53 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int try_texture(t_game *g)
 
 	fd = -1;
 	i = -1;
-	while (--i < 4)
+	while (++i < 4)
 	{
-		fd = open(g->tex[0],O_RDONLY);
+		fd = open(g->tex[i],O_RDONLY);
 		if (fd == -1)
-			return (printf("Error\nCan't open %s !\n", g->tex[0]), 0);
+			return (printf("Error\nCan't open %s !\n", g->tex[i]), 0);
 		close(fd);
 		fd = -1;
 	}
@@ -69,5 +69,6 @@ int	add_texture(t_game *g)
 	img[7] = ft_add_img(g, "./sprites/santa03.xpm");*/
 	img[4] = ft_add_img(g, "");
 
+	g->img = img;
 	return (1);
 }

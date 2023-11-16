@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 14:34:54 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:10:35 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,12 @@ int		update_pos(t_game *game);
 /*	texture.c	*/
 int		try_texture(t_game *g);
 int		add_texture(t_game *g);
+
+/*	update.c	*/
+int		update(t_game *game);
+
+/*	minimap.c	*/
+void	minimap(t_game *g);
 
 /*	free.c	*/
 void	free_map(t_game *g);
