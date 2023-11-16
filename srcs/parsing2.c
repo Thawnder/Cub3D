@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 17:08:11 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:20:39 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,20 @@ void	resize_map(t_game *g)
 {
 	int		y;
 	int		max_len;
-	char	*tmp;
 
 	max_len = 0;
 	y = -1;
 	while (g->map[++y][0])
 	{
 		if (max_len < (int)ft_strlen(g->map[y]))
-			max_len =  ft_strlen(g->map[y]);
+			max_len = (int)ft_strlen(g->map[y]);
 	}
 	y = -1;
 	while (g->map[++y][0])
 	{
 		if ((int)ft_strlen(g->map[y]) != max_len)
-		{
-			tmp = ft_calloc(sizeof(char), max_len);
-			ft_strlcpy(tmp, g->map[y], max_len);
-			ft_memset(&tmp[ft_strlen(tmp)], ' ', max_len);
-			free(g->map[y]);
-			g->map[y] = tmp;
-		}
+			g->map[y] = set_sized_line(ft_calloc(sizeof(char), max_len + 1),
+					g->map[y], max_len);
 	}
 }
 
@@ -78,7 +72,7 @@ int	set_map(int file, char *nfile, t_game *g)
 	i_map = find_map(file, &size);
 	file = open(nfile, O_RDONLY);
 	line = get_next_line(file);
-	g->map = calloc(sizeof(char *), size + 1);
+	g->map = ft_calloc(sizeof(char *), size + 1);
 	size = 0;
 	while (size++ < i_map)
 	{
@@ -88,11 +82,18 @@ int	set_map(int file, char *nfile, t_game *g)
 	size = -1;
 	while (++size >= 0 && line)
 	{
-		g->map[size] = calloc(sizeof(char), ft_strlen(line) + 1);
+		g->map[size] = ft_calloc(sizeof(char), ft_strlen(line) + 1);
 		set_line(g, line, size);
 		line = get_next_line(file);
 	}
-	g->map[size] = calloc(sizeof(char), 1);
+	g->map[size] = ft_calloc(sizeof(char), 1);
 	resize_map(g);
 	return (close(file), 1);
+}
+
+int	parsing_2(t_game *game)
+{
+	if (!add_texture(game))
+		return (0);
+	return (1);
 }
