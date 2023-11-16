@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 17:31:05 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:38:44 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_ray
 	int			tex_x;
 	int			tex_y;
 	double		tex_pos;
+	int32_t		color;
 }			t_ray;
 
 //int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];

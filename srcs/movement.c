@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/14 16:23:56 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:17:59 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	camera_rotation(int rotSpeed) // a adapter
     planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
 }
 
-int	update_pos(t_game *game) // conditions a adapte
+int	update_pos(t_game *game) // conditions a adapter
 {
 	if (game->end == 1)
 		return (0);
