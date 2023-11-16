@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 17:07:45 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:07 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	find_element(int file, char *cmp, int id, t_game *g)
 	if (!line[i])
 		return (close(file), free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
-	g->tex[id] = strdup(&line[i]);
+	g->tex[id] = strdup(delete_endl(&line[i]));
 	free(line);
 	return (close(file), 1);
 }
@@ -91,11 +91,11 @@ static int	do_parsing(int file, char *nfile, t_game *g)
 	int i = 0;
 	while (i < 4)
 	{
-		printf("%i - %s\n", i, g->tex[i]);
+		printf("%i - <|%s|>\n", i, g->tex[i]);
 		i++;
 	}
-	printf("RGB - FLOOR 	- %i, %i, %i\n", g->rgb[0][0], g->rgb[0][1], g->rgb[0][2]);
-	printf("RGB - CEILING 	- %i, %i, %i\n", g->rgb[1][0], g->rgb[1][1], g->rgb[1][2]);
+	printf("RGB - FLOOR 	- <|%i, %i, %i|>\n", g->rgb[0][0], g->rgb[0][1], g->rgb[0][2]);
+	printf("RGB - CEILING 	- <|%i, %i, %i|>\n", g->rgb[1][0], g->rgb[1][1], g->rgb[1][2]);
 	i = 0;
 	printf("\nMAP :\n");
 	while (g->map[i][0])

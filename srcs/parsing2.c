@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 17:08:11 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:39:05 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,20 @@ void	resize_map(t_game *g)
 {
 	int		y;
 	int		max_len;
-	char	*tmp;
 
 	max_len = 0;
 	y = -1;
 	while (g->map[++y][0])
 	{
 		if (max_len < (int)ft_strlen(g->map[y]))
-			max_len =  ft_strlen(g->map[y]);
+			max_len = (int)ft_strlen(g->map[y]);
 	}
 	y = -1;
 	while (g->map[++y][0])
 	{
 		if ((int)ft_strlen(g->map[y]) != max_len)
-		{
-			tmp = ft_calloc(sizeof(char), max_len);
-			ft_strlcpy(tmp, g->map[y], max_len);
-			ft_memset(&tmp[ft_strlen(tmp)], ' ', max_len);
-			free(g->map[y]);
-			g->map[y] = tmp;
-		}
+			g->map[y] = set_sized_line(ft_calloc(sizeof(char), max_len + 1),
+					g->map[y], max_len);
 	}
 }
 

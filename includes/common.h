@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/15 16:27:46 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:08:31 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ int		check_map(t_game *g);
 /*	utils.c	*/
 int		space_until(char *str);
 void	set_line(t_game *g, char *line, int y);
+char*	set_sized_line(char *tmp, char *old, int max);
+int		ft_ylen(char **map);
+char	*delete_endl(char *str);
 
 /*	movement.c	*/
 int		key_release(int keycode, t_game *game);
