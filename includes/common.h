@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 21:45:21 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:34:29 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define DOWN 65364
 # define RIGHT 65363
 
-# define MS 0.02
+# define MS 0.0005
 # define RS 0.02
 
 # define NO 0
@@ -130,6 +130,9 @@ int		parsing(int argc, char** argv, t_game *game);
 /*	parsing2.c	*/
 int		set_map(int file, char *nfile, t_game *g);
 int		parsing_2(t_game *game);
+
+/*	parsing3.c	*/
+void	set_orientation(t_game *g, char c);
 
 /*	check.c	*/
 int		check_map(t_game *g);

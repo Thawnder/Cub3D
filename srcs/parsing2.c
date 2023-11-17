@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 21:59:55 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:43:13 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ void	add_info(t_game *g)
 			{
 				g->ray->pos_x = y + 0.5;
 				g->ray->pos_y = x + 0.5;
-				g->map[y][x] = 0;
+				set_orientation(g, g->map[y][x]);
+				g->map[y][x] = '0';
 				break ;
 			}
 			x++;
@@ -116,6 +117,7 @@ void	add_info(t_game *g)
 	}
 	g->x_len = (int)ft_strlen(g->map[0]);
 	g->y_len = (int)ft_ylen(g->map);
+	//g->ray->dir_x = -1;
 }
 
 int	parsing_2(t_game *game)
