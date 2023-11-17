@@ -14,18 +14,9 @@
 
 int	find_color(char c)
 {
-	switch (c)
-	{
-		case '0':
-			return (0x0ed5a1);
-		case '1':
-			return (0);
-		case ' ':
-			return (0);
-		default:
-			return (0x0ed5a1);
-	}
-	return (0);
+	if (c == '1' || c == ' ')
+		return (0);
+	return (0x0ed5a1);
 }
 
 void	generate_minimap(t_game *g)
@@ -57,6 +48,34 @@ void	generate_minimap(t_game *g)
 	}
 }
 
+void	border_minimap(t_game *g)
+{
+	int	x;
+	int	y;
+	int	pixel;
+	int	color;
+
+	y = 0;
+	color = mlx_get_color_value(g->mlx, 0x007369);
+	while (y < 4 * g->y_len + 8)
+	{
+		x = 0;
+		while (x < 4 * g->x_len + 8)
+		{
+			if (y > 2 && y < 4 * g->y_len + 6 && x > 2 && x < 4 * g->x_len + 5
+				&& ++x > 0)
+				continue ;
+			pixel = (y * g->minimap->length) + (x * 4);
+			g->minimap->addr[pixel + 0] = (color >> 24);
+			g->minimap->addr[pixel + 1] = (color >> 16) & 0xFF;
+			g->minimap->addr[pixel + 2] = (color >> 8) & 0xFF;
+			g->minimap->addr[pixel + 3] = (color) & 0xFF;
+			x++;
+		}
+		y++;
+	}
+}
+
 void	minimap(t_game *g)
 {
 	int	optx;
@@ -68,6 +87,7 @@ void	minimap(t_game *g)
 	{
 		g->minimap = ft_calloc(sizeof(t_data), 1);
 		generate_minimap(g);
+		border_minimap(g);
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->minimap->ptr, 50, 50);
 	if (g->ray->pos_x - (int)g->ray->pos_x > 0.750)
@@ -82,5 +102,5 @@ void	minimap(t_game *g)
 		opty += 2;
 	else if (g->ray->pos_y - (int)g->ray->pos_y > 0.250)
 		++opty;
-	mlx_pixel_put(g->mlx, g->win, optx, opty, 0xffd5a1);
+	mlx_pixel_put(g->mlx, g->win, optx, opty, 0xffff00);
 }
