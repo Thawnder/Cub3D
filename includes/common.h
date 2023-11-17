@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 14:21:15 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 19:41:03 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include <math.h>
 # include <stdint.h>
 
-# define SCREENWIDTH 1280
-# define SCREENHEIGHT 720
+# define SCREENWIDTH 720
+# define SCREENHEIGHT 480
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define MAPWIDTH 24
@@ -44,8 +44,8 @@
 # define DOWN 65364
 # define RIGHT 65363
 
-# define MS 0.00025
-# define RS 0.00025
+# define MS 0.01
+# define RS 0.01
 
 # define NO 0
 # define SO 1
@@ -57,7 +57,8 @@
 typedef struct s_data
 {
 	void	*ptr;
-	char	*addr;
+	int		*addr;
+	char	*addr2;
 	int		bpp;
 	int		length;
 	int		x;
@@ -97,29 +98,33 @@ typedef struct s_ray
 	int			tex_x;
 	int			tex_y;
 	double		tex_pos;
-	int32_t		color;
-}			t_ray;
+	int			color;
+}				t_ray;
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	char		**map;
-	char		**tex;
-	int			rgb[2][3];
-	t_data		*img;
-	t_data		*minimap;
-	t_ray		*ray;
-	int			lm;
-	int			idx[2];
-	int			end;
-	int			forward;
-	int			backward;
-	int			left;
-	int			right;
-	int			y_len;
-	int			x_len;
-}				t_game;
+	void			*mlx;
+	void			*win;
+	char			**map;
+	char			**tex;
+	int				rgb[2][3];
+	unsigned int	hex[2];
+	int				has_moved;
+	int				**buffer;
+	t_data			*render;
+	t_data			*img;
+	t_data			*minimap;
+	t_ray			*ray;
+	int				lm;
+	int				idx[2];
+	int				end;
+	int				forward;
+	int				backward;
+	int				left;
+	int				right;
+	int				y_len;
+	int				x_len;
+}					t_game;
 
 
 //int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
@@ -129,9 +134,10 @@ int		parsing(int argc, char** argv, t_game *game);
 
 /*	parsing2.c	*/
 int		set_map(int file, char *nfile, t_game *g);
-int		parsing_2(t_game *game);
+int		parsing_2(t_game *g);
 
 /*	parsing3.c	*/
+void	rgb_to_hex(t_game *g);
 void	set_orientation(t_game *g, char c);
 
 /*	check.c	*/
@@ -147,6 +153,7 @@ char	*delete_endl(char *str);
 /*	movement.c	*/
 void	go_forward(t_game *g);
 void	go_backward(t_game *g);
+int		mouse_interact(int x, int y, t_game *g);
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
 
@@ -155,7 +162,14 @@ int		try_texture(t_game *g);
 int		add_texture(t_game *g);
 
 /*	update.c	*/
+void	camera_rotation(t_game *g, double rotSpeed);
 int		update(t_game *g);
+
+/*	render.c	*/
+void	render(t_game *g);
+
+/*	raycast.c	*/
+void	init_raycast(t_game *g);
 
 /*	minimap.c	*/
 void	minimap(t_game *g);
@@ -163,5 +177,6 @@ void	minimap(t_game *g);
 /*	free.c	*/
 void	free_map(t_game *g);
 void	free_all(t_game *g);
+void	ft_free_buffer(t_game *g);
 
 #endif

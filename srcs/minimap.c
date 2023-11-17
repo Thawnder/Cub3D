@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:43:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 13:44:32 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:16:34 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	generate_minimap(t_game *g)
 	y = 4;
 	g->minimap->ptr = mlx_new_image(g->mlx, (int)(4 * g->x_len + 8),
 			(int)(4 * g->y_len + 8));
-	g->minimap->addr = mlx_get_data_addr(g->minimap->ptr, &g->minimap->bpp,
+	g->minimap->addr2 = mlx_get_data_addr(g->minimap->ptr, &g->minimap->bpp,
 			&g->minimap->length, &g->minimap->endian);
 	while (y < 4 * g->y_len + 2)
 	{
@@ -38,10 +38,10 @@ void	generate_minimap(t_game *g)
 		{
 			pixel = (y * g->minimap->length) + (x * 4);
 			color = find_color(g->map[(int)(y / 4 - 1)][(int)(x / 4 - 1)]);
-			g->minimap->addr[pixel + 0] = (color >> 24);
-			g->minimap->addr[pixel + 1] = (color >> 16) & 0xFF;
-			g->minimap->addr[pixel + 2] = (color >> 8) & 0xFF;
-			g->minimap->addr[pixel + 3] = (color) & 0xFF;
+			g->minimap->addr2[pixel + 0] = (color >> 24);
+			g->minimap->addr2[pixel + 1] = (color >> 16) & 0xFF;
+			g->minimap->addr2[pixel + 2] = (color >> 8) & 0xFF;
+			g->minimap->addr2[pixel + 3] = (color) & 0xFF;
 			x++;
 		}
 		y++;
@@ -66,10 +66,10 @@ void	border_minimap(t_game *g)
 				&& ++x > 0)
 				continue ;
 			pixel = (y * g->minimap->length) + (x * 4);
-			g->minimap->addr[pixel + 0] = (color >> 24);
-			g->minimap->addr[pixel + 1] = (color >> 16) & 0xFF;
-			g->minimap->addr[pixel + 2] = (color >> 8) & 0xFF;
-			g->minimap->addr[pixel + 3] = (color) & 0xFF;
+			g->minimap->addr2[pixel + 0] = (color >> 24);
+			g->minimap->addr2[pixel + 1] = (color >> 16) & 0xFF;
+			g->minimap->addr2[pixel + 2] = (color >> 8) & 0xFF;
+			g->minimap->addr2[pixel + 3] = (color) & 0xFF;
 			x++;
 		}
 		y++;

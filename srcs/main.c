@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 19:36:17 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 19:54:32 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error\nWIN is null.\n"), EXIT_FAILURE);
 	if (!parsing_2(game))
 		return (free_all(game), EXIT_FAILURE);
-
+	render(game);
+	// mlx_mouse_hide(game->mlx, game->win);
 	mlx_hook(game->win, 2, (1L << 0), &key_press, game);
 	mlx_hook(game->win, 3, (1L << 1), &key_release, game);
+	mlx_hook(game->win, 6, (1L << 6), &mouse_interact, game);
 	mlx_hook(game->win, 17, 0, &ft_close, game);
 /*
 	mlx_put_image_to_window(game->mlx, game->win, game->img[0].ptr, 400, 0);

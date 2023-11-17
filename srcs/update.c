@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:42:30 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 14:20:14 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:11:45 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	camera_rotation(t_game *g, double rotSpeed)
 		- g->ray->plane_y * sin(rotSpeed);
 	g->ray->plane_y = old_planex * sin(rotSpeed)
 		+ g->ray->plane_y * cos(rotSpeed);
+	g->has_moved = 1;
 }
 
 int	update(t_game *g)
@@ -40,7 +41,11 @@ int	update(t_game *g)
 		camera_rotation(g, RS);
 	if (g->right == 1)
 		camera_rotation(g, -RS);
-
+	if (g->has_moved == 1)
+	{
+		render(g);
+		g->has_moved = 0;
+	}
 	static int debug = 0;
 	if (++debug == 20000)
 	{

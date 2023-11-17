@@ -6,11 +6,27 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:34:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 19:38:43 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 19:52:50 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+
+void	ft_free_buffer(t_game *g)
+{
+	int	y;
+
+	y = 0;
+	if (g->buffer)
+	{
+		while (y < SCREENHEIGHT)
+		{
+			free(g->buffer[y]);
+			y++;
+		}
+		free(g->buffer);
+	}
+}
 
 void	ft_free_img(t_game *g)
 {
@@ -56,6 +72,11 @@ void	free_all(t_game *g)
 		mlx_destroy_image(g->mlx, g->minimap->ptr);
 		free(g->minimap);
 	}
+	if (g->render)
+	{
+		mlx_destroy_image(g->mlx, g->render->ptr);
+		free(g->render);
+	}
 	if (g->ray)
 		free(g->ray);
 	if (g->mlx)
@@ -64,5 +85,6 @@ void	free_all(t_game *g)
 		mlx_destroy_display(g->mlx);
 		free(g->mlx);
 	}
+	ft_free_buffer(g);
 	free(g);
 }

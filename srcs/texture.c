@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:12:46 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 15:36:53 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:54:59 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_data	ft_add_img(t_game *g, char *path)
 	{
 		img.ptr = mlx_xpm_file_to_image(g->mlx,
 				path, &img.x, &img.y);
-		img.addr = mlx_get_data_addr(img.ptr, &img.bpp,
+		img.addr = (int *)mlx_get_data_addr(img.ptr, &img.bpp,
 				&img.length, &img.endian);
 	}
 	return (img);
