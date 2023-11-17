@@ -106,8 +106,9 @@ void	add_info(t_game *g)
 			if (g->map[y][x] == 'N' || g->map[y][x] == 'S'
 				|| g->map[y][x] == 'E' || g->map[y][x] == 'W')
 			{
-				g->ray->pos_x = x + 0.5;
-				g->ray->pos_y = y + 0.5;
+				g->ray->pos_x = y + 0.5;
+				g->ray->pos_y = x + 0.5;
+				g->map[y][x] = 0;
 				break ;
 			}
 			x++;

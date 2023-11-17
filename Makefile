@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_PATH = includes/Libft
-LIB = -L${LIBFT_PATH} -lft -L${MINILIBX_PATH} -lmlx -lXext -lX11
+LIB = -L${LIBFT_PATH} -lft -L${MINILIBX_PATH} -lm -lmlx -lXext -lX11
 LIBFT = ${LIBFT_PATH}/libft.a
 
 MINILIBX = ${MINILIBX_PATH}libmlx.a

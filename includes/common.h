@@ -44,6 +44,9 @@
 # define DOWN 65364
 # define RIGHT 65363
 
+# define MS 0.02
+# define RS 0.02
+
 # define NO 0
 # define SO 1
 # define WE 2
@@ -139,16 +142,17 @@ int		ft_ylen(char **map);
 char	*delete_endl(char *str);
 
 /*	movement.c	*/
+void	go_forward(t_game *g);
+void	go_backward(t_game *g);
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
-int		update_pos(t_game *game);
 
 /*	texture.c	*/
 int		try_texture(t_game *g);
 int		add_texture(t_game *g);
 
 /*	update.c	*/
-int		update(t_game *game);
+int		update(t_game *g);
 
 /*	minimap.c	*/
 void	minimap(t_game *g);

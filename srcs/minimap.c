@@ -102,5 +102,5 @@ void	minimap(t_game *g)
 		opty += 2;
 	else if (g->ray->pos_y - (int)g->ray->pos_y > 0.250)
 		++opty;
-	mlx_pixel_put(g->mlx, g->win, optx, opty, 0xffff00);
+	mlx_pixel_put(g->mlx, g->win, opty, optx, 0xffff00);
 }
