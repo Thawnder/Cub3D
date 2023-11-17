@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 13:34:29 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:21:15 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define DOWN 65364
 # define RIGHT 65363
 
-# define MS 0.0005
-# define RS 0.02
+# define MS 0.00025
+# define RS 0.00025
 
 # define NO 0
 # define SO 1

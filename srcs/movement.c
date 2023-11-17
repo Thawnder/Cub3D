@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/16 11:17:59 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:15:45 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int	key_release(int keycode, t_game *game)
 	else if (keycode == A || keycode == LEFT)
 		game->left = 0;
 	else if (keycode == D || keycode == RIGHT)
-		game->left = 0;
+		game->right = 0;
 	return (0);
 }
