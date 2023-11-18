@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:26:21 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 19:30:18 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:11:11 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,43 @@ static void	render_frame(t_game *g)
 	}
 }
 
+void	init_raycast(t_game *g, int x)
+{
+	g->ray->camera_x = 2 * x / (double)SCREENWIDTH - 1;
+	g->ray->raydir_x = g->ray->dir_x + g->ray->plane_x * g->ray->camera_x;
+	g->ray->raydir_y = g->ray->dir_y + g->ray->plane_y * g->ray->camera_x;
+	g->ray->map_x = g->ray->pos_x;
+	g->ray->map_y = g->ray->pos_y;
+	g->ray->step_x = 0;
+	g->ray->step_y = 0;
+	g->ray->sidedist_x = 0;
+	g->ray->sidedist_y = 0;
+	g->ray->deltadist_x = fabs(1 / g->ray->raydir_x);
+	g->ray->deltadist_y = fabs(1 / g->ray->raydir_y);
+	g->ray->perpwalldist = 0;
+	g->ray->wall_x = 0;
+	g->ray->side = 0;
+	g->ray->line_height = 0;
+	g->ray->draw_start = 0;
+	g->ray->draw_end = 0;
+	g->ray->hit = 0;
+}
+
 void	render(t_game *g)
 {
+	int	x;
+
+	x = 0;
 	prepare_render(g);
-	init_raycast(g);
+	while (x < SCREENWIDTH)
+	{
+		init_raycast(g, x);
+		set_sidedist(g);
+		set_hit_texture(g);
+		set_draw_start_end(g);
+		set_buffer_color(g, x);
+		x++;
+	}
 	render_frame(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->render->ptr, 0, 0);
 }

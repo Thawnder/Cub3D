@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 17:36:16 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:15:58 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,10 @@ static int	do_parsing(int file, char *nfile, t_game *g)
 		|| !find_element(open(nfile, O_RDONLY), "EA ", EA, g)
 		|| !find_rgb(open(nfile, O_RDONLY), "F ", FLOOR, g)
 		|| !find_rgb(open(nfile, O_RDONLY), "C ", CEILING, g)
-		
 		|| !try_texture(g)
 		|| !set_map(open(nfile, O_RDONLY), nfile, g))
 		return (0);
-
-	int i = 0;
-	while (i < 4)
-	{
-		printf("%i - <|%s|>\n", i, g->tex[i]);
-		i++;
-	}
-	printf("RGB - FLOOR 	- <|%i, %i, %i|>\n", g->rgb[0][0], g->rgb[0][1], g->rgb[0][2]);
-	printf("RGB - CEILING 	- <|%i, %i, %i|>\n", g->rgb[1][0], g->rgb[1][1], g->rgb[1][2]);
-	i = 0;
-	printf("\nMAP :\n");
-	while (g->map[i][0])
-		printf("|%s|\n", g->map[i++]);
-
+	debug(g); //TO_DELETE
 	return (1);
 }
 

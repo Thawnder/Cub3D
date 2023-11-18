@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/18 13:15:47 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:54:45 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	mouse_interact(int x, int y, t_game *g)
 
 int	key_press(int keycode, t_game *game)
 {
-	printf("KEY DOWN = %i\n", keycode);
 	if (keycode == ESC && ++game->end > 0)
 		return (free_all(game), exit(EXIT_SUCCESS), 0);
 	else if (keycode == W || keycode == UP)
@@ -70,7 +69,6 @@ int	key_press(int keycode, t_game *game)
 
 int	key_release(int keycode, t_game *game)
 {
-	printf("KEY UP= %i\n", keycode);
 	if (keycode == W || keycode == UP)
 		game->forward = 0;
 	else if (keycode == S || keycode == DOWN)

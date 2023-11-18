@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 13:34:03 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:15:39 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define MAPWIDTH 24
 # define MAPHEIGHT 24
 # define PET 5
+# define SPEED_ANIM 20000
 # define ESC 65307
 # define W 11
 # define A 97
@@ -144,6 +145,7 @@ int		parsing_2(t_game *g);
 void	doors_map(t_game *g);
 void	rgb_to_hex(t_game *g);
 void	set_orientation(t_game *g, char c);
+void	debug(t_game *g);
 
 /*	check.c	*/
 int		check_map(t_game *g);
@@ -173,8 +175,11 @@ int		update(t_game *g);
 /*	render.c	*/
 void	render(t_game *g);
 
-/*	raycast.c	*/
-void	init_raycast(t_game *g);
+/*	render2.c	*/
+void	set_sidedist(t_game *g);
+void	set_hit_texture(t_game *g);
+void	set_draw_start_end(t_game *g);
+void	set_buffer_color(t_game *g, int x);
 
 /*	minimap.c	*/
 void	minimap(t_game *g);

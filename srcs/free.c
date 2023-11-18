@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:34:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 13:16:48 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:13:56 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,23 @@ void	free_map(t_game *g)
 	}
 }
 
+void	free_all_2(t_game *g)
+{
+	if (g->render)
+	{
+		mlx_destroy_image(g->mlx, g->render->ptr);
+		free(g->render);
+	}
+	if (g->ray)
+		free(g->ray);
+	if (g->mlx)
+	{
+		mlx_destroy_window(g->mlx, g->win);
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
+}
+
 void	free_all(t_game *g)
 {
 	int	i;
@@ -80,19 +97,7 @@ void	free_all(t_game *g)
 		mlx_destroy_image(g->mlx, g->minimap->ptr);
 		free(g->minimap);
 	}
-	if (g->render)
-	{
-		mlx_destroy_image(g->mlx, g->render->ptr);
-		free(g->render);
-	}
-	if (g->ray)
-		free(g->ray);
-	if (g->mlx)
-	{
-		mlx_destroy_window(g->mlx, g->win);
-		mlx_destroy_display(g->mlx);
-		free(g->mlx);
-	}
+	free_all_2(g);
 	ft_free_buffer(g);
 	free(g);
 }

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:42:30 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 13:37:29 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:56:42 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ void	open_doors(t_game *g)
 		return ;
 }
 
+void	anim(t_game *g)
+{
+	static int	anim = 0;
+
+	if (++anim >= SPEED_ANIM)
+	{
+		++g->actual_anim;
+		if (g->actual_anim == PET + 3)
+			g->actual_anim = PET;
+		render(g);
+		anim = 0;
+	}
+}
+
 int	update(t_game *g)
 {
 	if (g->end == 1)
@@ -80,21 +94,7 @@ int	update(t_game *g)
 		render(g);
 		g->has_moved = 0;
 	}
-	static int debug = 0;
-	if (++debug == 20000)
-	{
-		++g->actual_anim;
-		if (g->actual_anim == PET + 3)
-			g->actual_anim = PET;
-		render(g);
-		printf("POS JOUEUR : %lf %lf\n", g->ray->pos_x, g->ray->pos_y);
-		printf("ROTA JOUEUR : %lf %lf\n", g->ray->dir_x, g->ray->dir_y);
-		debug = 0;
-	}
-
-
-
-
-	minimap(g); //last
+	anim(g);
+	minimap(g);
 	return (0);
 }
