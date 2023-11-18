@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:14:37 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/16 15:20:06 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:36:09 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	check_char(char **map)
 			else if (player && (map[y][i] == 'N' || map[y][i] == 'S'
 				|| map[y][i] == 'E' || map[y][i] == 'W'))
 				return (0);
-			else if (map[y][i] != '0' && map[y][i] != '1' && map[y][i] != ' ')
+			else if (map[y][i] != '0' && map[y][i] != '1' && map[y][i] != ' '
+					&& map[y][i] != 'P' && map[y][i] != 'A')
 				return (0);
 		}
 	}
@@ -118,7 +119,7 @@ static int	check_uplow_wall(char **map)
 int	check_map(t_game *g)
 {
 	if (!check_char(g->map))
-		return (printf("Error\nMap must contain : 0/1 and 1xN/S/E/W\n"), 0);
+		return (printf("Error\nMap must contain : 0/1/P and 1xN/S/E/W\n"), 0);
 	if (!check_side_wall(g->map) || !check_uplow_wall(g->map))
 		return (printf("Error\nMap must be surrounded by wall\n"), 0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 19:30:42 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:34:23 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,7 @@ int	parsing_2(t_game *g)
 		+ (g->rgb[0][3] & 0xff);
 	g->hex[1] = ((g->rgb[1][1] & 0xff) << 16) + ((g->rgb[1][2] & 0xff) << 8)
 		+ (g->rgb[1][3] & 0xff);
+	doors_map(g);
+	g->actual_anim = PET;
 	return (1);
 }

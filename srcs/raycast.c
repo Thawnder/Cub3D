@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:10:26 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/17 19:13:59 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:36:28 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 static int	index_texture(t_game *g)
 {
+	if (g->ray->hit == 2)
+		return (4);
+	if (g->ray->hit == 3)
+		return (g->actual_anim);
 	if (g->ray->side == 0)
 	{
-		if (g->ray->dir_x < 0)
-			return (3);
+		if (g->ray->raydir_x < 0)
+			return (0);
 		else
 			return (2);
 	}
 	else
 	{
-		if (g->ray->dir_y > 0)
-			return (1);
+		if (g->ray->raydir_y > 0)
+			return (3);
 		else
-			return (0);
+			return (1);
 	}
 	return (0);
 }
@@ -40,6 +44,8 @@ void	init_raycast(t_game *g)
 	while (x < SCREENWIDTH)
 	{
 		g->ray->camera_x = 0;
+		g->ray->raydir_x = 0;
+		g->ray->raydir_y = 0;
 		g->ray->map_x = 0;
 		g->ray->map_y = 0;
 		g->ray->step_x = 0;
@@ -110,7 +116,11 @@ void	init_raycast(t_game *g)
 				|| g->ray->map_y > g->x_len - 0.25
 				|| g->ray->map_x > g->y_len - 1.25)
 				break ;
-			if (g->map[g->ray->map_x][g->ray->map_y] > '0')
+			if (g->map[g->ray->map_x][g->ray->map_y] == 'P')
+				g->ray->hit = 2;
+			else if (g->map[g->ray->map_x][g->ray->map_y] == 'A')
+				g->ray->hit = 3;
+			else if (g->map[g->ray->map_x][g->ray->map_y] > '0')
 				g->ray->hit = 1;
 		}
 		// Calculate distance of perpendicular ray 
@@ -121,12 +131,11 @@ void	init_raycast(t_game *g)
 			g->ray->perpwalldist = (g->ray->sidedist_y - g->ray->deltadist_y);
 		//Calculate height of line to draw on screen
 		g->ray->line_height = (int)(SCREENHEIGHT / g->ray->perpwalldist);
-		// g->ray->pitch = 100;
 		//calculate lowest and highest pixel to fill in current stripe
-		g->ray->draw_start = -(g->ray->line_height) / 2 + SCREENHEIGHT / 2 /*+ g->ray->pitch*/;
+		g->ray->draw_start = -(g->ray->line_height) / 2 + SCREENHEIGHT / 2;
 		if (g->ray->draw_start < 0)
 			g->ray->draw_start = 0;
-		g->ray->draw_end = g->ray->line_height / 2 + SCREENHEIGHT / 2 /*+ g->ray->pitch*/;
+		g->ray->draw_end = g->ray->line_height / 2 + SCREENHEIGHT / 2;
 		if (g->ray->draw_end >= SCREENHEIGHT)
 			g->ray->draw_end = SCREENHEIGHT - 1;
 		//calculate value of wallX
@@ -151,8 +160,7 @@ void	init_raycast(t_game *g)
 		// How much to increase the texture coordinate per screen pixel
 		g->ray->step = 1.0 * TEXHEIGHT / g->ray->line_height;
 		// Starting texture coordinate
-		g->ray->tex_pos = (g->ray->draw_start /*- g->ray->pitch*/
-				- SCREENHEIGHT / 2 + g->ray->line_height / 2) * g->ray->step;
+		g->ray->tex_pos = (g->ray->draw_start - SCREENHEIGHT / 2 + g->ray->line_height / 2) * g->ray->step;
 
 		int	y;
 		y = g->ray->draw_start;

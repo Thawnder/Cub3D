@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:34:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 19:52:50 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:16:48 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	free_map(t_game *g)
 		free(g->map[i++]);
 	free(g->map[i]);
 	free(g->map);
+	if (g->doors)
+	{
+		i = 0;
+		while (g->doors[i][0])
+			free(g->doors[i++]);
+		free(g->doors[i]);
+		free(g->doors);
+	}
 }
 
 void	free_all(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 19:41:03 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:34:03 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define TEXHEIGHT 64
 # define MAPWIDTH 24
 # define MAPHEIGHT 24
+# define PET 5
 # define ESC 65307
 # define W 11
 # define A 97
@@ -43,6 +44,7 @@
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
+# define SPACE 32
 
 # define MS 0.01
 # define RS 0.01
@@ -87,7 +89,6 @@ typedef struct s_ray
 	int			hit; //was there a wall hit?
 	int			side; //was a NS or a EW wall hit?
 	int			line_height;
-	int			pitch;
 	double		step;
 	double		pos_x; //x and y start position
 	double		pos_y;
@@ -106,11 +107,13 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	char			**map;
+	char			**doors;
 	char			**tex;
 	int				rgb[2][3];
 	unsigned int	hex[2];
 	int				has_moved;
 	int				**buffer;
+	int				actual_anim;
 	t_data			*render;
 	t_data			*img;
 	t_data			*minimap;
@@ -122,6 +125,7 @@ typedef struct s_game
 	int				backward;
 	int				left;
 	int				right;
+	int				open;
 	int				y_len;
 	int				x_len;
 }					t_game;
@@ -137,6 +141,7 @@ int		set_map(int file, char *nfile, t_game *g);
 int		parsing_2(t_game *g);
 
 /*	parsing3.c	*/
+void	doors_map(t_game *g);
 void	rgb_to_hex(t_game *g);
 void	set_orientation(t_game *g, char c);
 
@@ -162,7 +167,7 @@ int		try_texture(t_game *g);
 int		add_texture(t_game *g);
 
 /*	update.c	*/
-void	camera_rotation(t_game *g, double rotSpeed);
+void	camera_rotation(t_game *g, double rotspeed);
 int		update(t_game *g);
 
 /*	render.c	*/

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 19:54:32 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/17 19:56:24 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ int	main(int argc, char **argv)
 	mlx_hook(game->win, 3, (1L << 1), &key_release, game);
 	mlx_hook(game->win, 6, (1L << 6), &mouse_interact, game);
 	mlx_hook(game->win, 17, 0, &ft_close, game);
-/*
-	mlx_put_image_to_window(game->mlx, game->win, game->img[0].ptr, 400, 0);
-	mlx_put_image_to_window(game->mlx, game->win, game->img[1].ptr, 400, 64);
-	mlx_put_image_to_window(game->mlx, game->win, game->img[2].ptr, 400, 128);
-	mlx_put_image_to_window(game->mlx, game->win, game->img[3].ptr, 400, 192);
-*/
 	mlx_loop_hook(game->mlx, &update, game);
 	mlx_loop(game->mlx);
 	free_all(game);
