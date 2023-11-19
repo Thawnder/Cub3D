@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 14:15:58 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:26:23 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@ static int	set_rgb(char *line, int id, char *cmp, t_game *g)
 	g->rgb[id][0] = atoi(&line[2]);
 	while (line[i] && line[i - 1] != ',')
 		i++;
-	if (!line[i])
+	if (!line[i] || g->rgb[id][0] < 0 || g->rgb[id][0] > 255)
 		return (free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
 	g->rgb[id][1] = atoi(&line[i++]);
 	while (line[i] && line[i - 1] != ',')
 		i++;
-	if (!line[i])
+	if (!line[i] || g->rgb[id][1] < 0 || g->rgb[id][1] > 255)
 		return (free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
 	g->rgb[id][2] = atoi(&line[i]);
+	if (g->rgb[id][2] < 0 || g->rgb[id][2] > 255)
+		return (free(line),
+			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
 	return (1);
 }
 

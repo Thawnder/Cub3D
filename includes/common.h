@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 14:15:39 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:33:20 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_ray
 	double		perpwalldist;
 	double		wall_x;
 	int			tex_num;
+	int			tex_tmp;
 	int			draw_start;
 	int			draw_end;
 	int			step_x; //what direction to step in x or y-direction (either +1 or -1)

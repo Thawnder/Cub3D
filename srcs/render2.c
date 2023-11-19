@@ -6,17 +6,17 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:02:38 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 14:11:58 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:35:06 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
-static int	index_texture(t_game *g)
+static int	index_texture(t_game *g, int out)
 {
-	if (g->ray->hit == 2)
+	if (!out && g->ray->hit == 2)
 		return (4);
-	if (g->ray->hit == 3)
+	if (!out && g->ray->hit == 3)
 		return (g->actual_anim);
 	if (g->ray->side == 0)
 	{
@@ -79,9 +79,9 @@ void	set_hit_texture(t_game *g)
 			g->ray->map_y += g->ray->step_y;
 			g->ray->side = 1;
 		}
-		if (g->ray->map_y < 0.25 || g->ray->map_x < 0.25
-			|| g->ray->map_y > g->x_len - 0.25
-			|| g->ray->map_x > g->y_len - 1.25)
+		if (g->ray->map_y < 0.2 || g->ray->map_x < 0.2
+			|| g->ray->map_y > g->x_len - 0.2
+			|| g->ray->map_x > g->y_len - 0.2)
 			break ;
 		if (g->map[g->ray->map_x][g->ray->map_y] == 'P')
 			g->ray->hit = 2;
@@ -112,7 +112,8 @@ void	set_draw_start_end(t_game *g)
 		g->ray->wall_x = g->ray->pos_x + g->ray->perpwalldist
 			* g->ray->raydir_x;
 	g->ray->wall_x -= floor(g->ray->wall_x);
-	g->ray->tex_num = index_texture(g);
+	g->ray->tex_num = index_texture(g, 0);
+	g->ray->tex_tmp = index_texture(g, 1);
 	g->ray->tex_x = (int)(g->ray->wall_x * TEXWIDTH);
 	if (g->ray->side == 0 && g->ray->raydir_x < 0)
 		g->ray->tex_x = TEXWIDTH - g->ray->tex_x - 1;
@@ -134,6 +135,9 @@ void	set_buffer_color(t_game *g, int x)
 		g->ray->tex_pos += g->ray->step;
 		g->ray->color = g->img[g->ray->tex_num].addr[TEXHEIGHT
 			* g->ray->tex_y + g->ray->tex_x];
+		if (g->ray->hit == 3 && g->ray->color <= 0)
+			g->ray->color = g->img[g->ray->tex_tmp].addr[TEXHEIGHT
+				* g->ray->tex_y + g->ray->tex_x];
 		if (g->ray->color > 0)
 			g->buffer[y][x] = g->ray->color;
 		y++;
