@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:42:30 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 13:56:42 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:32:51 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,12 @@ int	update(t_game *g)
 	if (g->backward == 1)
 		go_backward(g);
 	if (g->left == 1)
-		camera_rotation(g, RS);
+		go_left(g);
 	if (g->right == 1)
+		go_right(g);
+	if (g->cleft == 1)
+		camera_rotation(g, RS);
+	if (g->cright == 1)
 		camera_rotation(g, -RS);
 	if (g->open == 1)
 		open_doors(g);
@@ -94,7 +98,5 @@ int	update(t_game *g)
 		render(g);
 		g->has_moved = 0;
 	}
-	anim(g);
-	minimap(g);
-	return (0);
+	return (anim(g), minimap(g), 0);
 }
