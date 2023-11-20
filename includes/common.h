@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 17:56:56 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:24:32 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_ray
 	int			tex_y;
 	double		tex_pos;
 	int			color;
-	int			*z_buffer;
+	double		*z_buffer;
 }				t_ray;
 
 typedef struct s_sprite
@@ -140,7 +140,6 @@ typedef struct s_game
 	int				actual_anim;
 	t_data			*render;
 	t_data			*img;
-	t_data			*minimap;
 	t_ray			*ray;
 	int				lm;
 	int				idx[2];

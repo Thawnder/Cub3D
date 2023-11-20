@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 13:57:37 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:34:23 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ static int	do_parsing(int file, char *nfile, t_game *g)
 		|| !try_texture(g)
 		|| !set_map(open(nfile, O_RDONLY), nfile, g))
 		return (0);
-	debug(g); //TO_DELETE
 	return (1);
 }
 

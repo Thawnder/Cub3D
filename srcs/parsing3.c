@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:31:57 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 16:40:24 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:32:11 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	set_sprite(int size, t_game *g)
 {
 	int	i;
 	int	x;
-	int y;
+	int	y;
 
 	i = 0;
 	x = -1;

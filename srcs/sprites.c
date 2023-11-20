@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:13:05 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/20 17:59:06 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:34:16 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_sprites(t_game *g)
 			* TEXWIDTH / g->ray->sprite_width) / 256;
 	if (g->ray->transform_y > 0 && g->ray->stripe > 0
 		&& g->ray->stripe < SCREENWIDTH
-		&& g->ray->transform_y < g->ray->z_buffer[g->ray->stripe]) // OWUEGHFIYUWEGHYI
+		&& g->ray->transform_y < g->ray->z_buffer[g->ray->stripe])
 	{
 		y = g->ray->draw_start_y - 1;
 		while (++y < g->ray->draw_end_y)

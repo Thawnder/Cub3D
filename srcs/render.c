@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:26:21 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 17:18:01 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:33:49 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	init_raycast(t_game *g, int x)
 
 void	sort_sprite(t_game *g)
 {
-	int	x;
-	int	y;
-	t_sprite tmp;
+	int			x;
+	int			y;
+	t_sprite	tmp;
 
 	x = -1;
 	while (g->sprite[++x].x)
@@ -98,7 +98,7 @@ void	sort_sprite(t_game *g)
 			{
 				tmp = g->sprite[y];
 				g->sprite[y] = g->sprite[y + 1];
-				g->sprite[y + 1] = tmp;	
+				g->sprite[y + 1] = tmp;
 			}
 		}
 	}
@@ -119,13 +119,12 @@ void	render(t_game *g)
 		set_buffer_color(g, x);
 		x++;
 	}
-	
 	x = -1;
-   	while(g->sprite[++x].x)
-		g->sprite[x].distance = ((g->ray->pos_x - g->sprite[x].x) *
-	 		(g->ray->pos_x - g->sprite[x].x) + (g->ray->pos_y - g->sprite[x].y)
-			* (g->ray->pos_y - g->sprite[x].y));
-    sort_sprite(g);
+	while (g->sprite[++x].x)
+		g->sprite[x].distance = ((g->ray->pos_x - g->sprite[x].x)
+				* (g->ray->pos_x - g->sprite[x].x) + (g->ray->pos_y
+					- g->sprite[x].y) * (g->ray->pos_y - g->sprite[x].y));
+	sort_sprite(g);
 	render_sprites(g);
 	minimap(g);
 	render_frame(g);

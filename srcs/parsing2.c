@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 15:34:50 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:34:55 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,12 @@ int	set_map(int file, char *nfile, t_game *g)
 	return (close(file), 1);
 }
 
-void	add_info(t_game *g)
+void	add_info(t_game *g, int size)
 {
 	int	x;
 	int	y;
-	int	size;
 
 	y = -1;
-	size = 0;
 	g->ray = ft_calloc(sizeof(t_ray), 1);
 	while (g->map[++y][0])
 	{
@@ -124,9 +122,12 @@ void	add_info(t_game *g)
 
 int	parsing_2(t_game *g)
 {
+	int	size;
+
+	size = 0;
 	if (!add_texture(g))
 		return (0);
-	add_info(g);
+	add_info(g, size);
 	g->x_len = (int)ft_strlen(g->map[0]);
 	g->y_len = (int)ft_ylen(g->map);
 	g->hex[0] = ((g->rgb[0][1] & 0xff) << 16) + ((g->rgb[0][2] & 0xff) << 8)
@@ -135,6 +136,6 @@ int	parsing_2(t_game *g)
 		+ (g->rgb[1][3] & 0xff);
 	doors_map(g);
 	g->actual_anim = PET;
-	g->ray->z_buffer = ft_calloc(sizeof(int), SCREENWIDTH + 1);
+	g->ray->z_buffer = ft_calloc(sizeof(double), SCREENWIDTH + 1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:43:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 17:31:22 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 23:19:58 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	border_minimap(t_game *g)
 {
 	int	x;
 	int	y;
-	int	pixel;
 	int	color;
 
 	y = 0;
@@ -56,11 +55,7 @@ void	border_minimap(t_game *g)
 			if (y > 2 && y < 4 * g->y_len + 6 && x > 2 && x < 4 * g->x_len + 5
 				&& ++x > 0)
 				continue ;
-			pixel = (y * g->minimap->length) + (x * 4);
-			g->minimap->addr2[pixel + 0] = (color >> 24);
-			g->minimap->addr2[pixel + 1] = (color >> 16) & 0xFF;
-			g->minimap->addr2[pixel + 2] = (color >> 8) & 0xFF;
-			g->minimap->addr2[pixel + 3] = (color) & 0xFF;
+			g->buffer[y][x] = color;
 			x++;
 		}
 		y++;
@@ -72,10 +67,9 @@ void	minimap(t_game *g)
 	int	optx;
 	int	opty;
 
-	optx = (int)(g->ray->pos_x) * 4;
-	opty = (int)(g->ray->pos_y) * 4;
+	optx = (int)(g->ray->pos_x) * 4 + 4;
+	opty = (int)(g->ray->pos_y) * 4 + 4;
 	generate_minimap(g);
-	//border_minimap(g);
 	if (g->ray->pos_x - (int)g->ray->pos_x > 0.750)
 		optx += 3;
 	else if (g->ray->pos_x - (int)g->ray->pos_x > 0.500)
@@ -89,5 +83,4 @@ void	minimap(t_game *g)
 	else if (g->ray->pos_y - (int)g->ray->pos_y > 0.250)
 		++opty;
 	g->buffer[optx][opty] = 0xffff00;
-	//mlx_pixel_put(g->mlx, g->win, opty, optx, 0xffff00);
 }
