@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/20 13:32:37 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:56:47 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ int	mouse_interact(int x, int y, t_game *g)
 	if (x == mid_x)
 		return (0);
 	else if (x < mid_x)
-		camera_rotation(g, RS / 2);
+		g->cleft = 1;
 	else if (x > mid_x)
-		camera_rotation(g, -RS / 2);
+		g->cright = 1;
+	g->mouse = 1;
 	mlx_mouse_move(g->mlx, g->win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
 	return (0);
 }

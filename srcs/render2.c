@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:02:38 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 15:06:08 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:43:41 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	index_texture(t_game *g, int out)
 {
 	if (!out && g->ray->hit == 2)
 		return (4);
-	if (!out && g->ray->hit == 3)
-		return (g->actual_anim);
 	if (g->ray->side == 0)
 	{
 		if (g->ray->raydir_x < 0)
@@ -85,9 +83,7 @@ void	set_hit_texture(t_game *g)
 			break ;
 		if (g->map[g->ray->map_x][g->ray->map_y] == 'P')
 			g->ray->hit = 2;
-		else if (g->map[g->ray->map_x][g->ray->map_y] == 'A')
-			g->ray->hit = 3;
-		else if (g->map[g->ray->map_x][g->ray->map_y] > '0')
+		else if (g->map[g->ray->map_x][g->ray->map_y] == '1')
 			g->ray->hit = 1;
 	}
 }
@@ -135,11 +131,9 @@ void	set_buffer_color(t_game *g, int x)
 		g->ray->tex_pos += g->ray->step;
 		g->ray->color = g->img[g->ray->tex_num].addr[TEXHEIGHT
 			* g->ray->tex_y + g->ray->tex_x];
-		if (g->ray->hit == 3 && g->ray->color <= 0)
-			g->ray->color = g->img[g->ray->tex_tmp].addr[TEXHEIGHT
-				* g->ray->tex_y + g->ray->tex_x];
 		if (g->ray->color > 0)
 			g->buffer[y][x] = g->ray->color;
 		y++;
 	}
+	g->ray->z_buffer[x] = g->ray->perpwalldist;
 }

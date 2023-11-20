@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 14:14:41 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:34:50 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ int	parsing_2(t_game *g)
 		+ (g->rgb[1][3] & 0xff);
 	doors_map(g);
 	g->actual_anim = PET;
+	g->ray->z_buffer = ft_calloc(sizeof(int), SCREENWIDTH + 1);
 	return (1);
 }

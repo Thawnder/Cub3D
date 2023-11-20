@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:42:30 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 13:32:51 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:57:34 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	camera_rotation(t_game *g, double rotspeed)
 	g->ray->plane_y = old_planex * sin(rotspeed)
 		+ g->ray->plane_y * cos(rotspeed);
 	g->has_moved = 1;
+	if (g->mouse)
+	{
+		g->cleft = 0;
+		g->cright = 0;
+		g->mouse = 0;
+	}
 }
 
 int	check_doors(t_game *g, int x, int y)
@@ -65,7 +71,9 @@ void	anim(t_game *g)
 {
 	static int	anim = 0;
 
-	if (++anim >= SPEED_ANIM)
+	if (g->has_moved == 1 && --g->has_moved == 0)
+		anim += 600;
+	if (++anim >= 10000)
 	{
 		++g->actual_anim;
 		if (g->actual_anim == PET + 3)
@@ -77,6 +85,7 @@ void	anim(t_game *g)
 
 int	update(t_game *g)
 {
+	anim(g);
 	if (g->end == 1)
 		return (0);
 	if (g->forward == 1)
@@ -94,9 +103,6 @@ int	update(t_game *g)
 	if (g->open == 1)
 		open_doors(g);
 	if (g->has_moved == 1)
-	{
 		render(g);
-		g->has_moved = 0;
-	}
-	return (anim(g), minimap(g), 0);
+	return (0);
 }

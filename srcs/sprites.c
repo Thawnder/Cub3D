@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:13:05 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/20 15:16:52 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:59:06 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void	sprites_projection(t_game *g, int i, double inv_det)
 	g->ray->sprite_y = g->sprite[i].y - g->ray->pos_y;
 	g->ray->transform_x = inv_det * (g->ray->dir_y * g->ray->sprite_x
 			- g->ray->dir_x * g->ray->sprite_y);
-	g->ray->transform_x = inv_det * (-g->ray->plane_y * g->ray->sprite_x
+	g->ray->transform_y = inv_det * ((g->ray->plane_y * -1) * g->ray->sprite_x
 			+ g->ray->plane_x * g->ray->sprite_y);
 	g->ray->sprite_screen_x = (int)(SCREENWIDTH / 2)*(1 + g->ray->transform_x
 			/ g->ray->transform_y);
-	g->ray->sprite_height = fabs((int)(SCREENHEIGHT / (g->ray->transform_y)));
+	g->ray->sprite_height = abs((int)(SCREENHEIGHT / g->ray->transform_y));
 	g->ray->draw_start_y = -g->ray->sprite_height / 2 + SCREENHEIGHT / 2;
 	if (g->ray->draw_start_y < 0)
 		g->ray->draw_start_y = 0;
 	g->ray->draw_end_y = g->ray->sprite_height / 2 + SCREENHEIGHT / 2;
 	if (g->ray->draw_end_y >= SCREENHEIGHT)
 		g->ray->draw_end_y = SCREENHEIGHT - 1;
-	g->ray->sprite_width = fabs((int)(SCREENHEIGHT / (g->ray->transform_y)));
+	g->ray->sprite_width = abs((int)(SCREENHEIGHT / (g->ray->transform_y)));
 	g->ray->draw_start_x = -g->ray->sprite_width / 2 + g->ray->sprite_screen_x;
 	if (g->ray->draw_start_x < 0)
 		g->ray->draw_start_x = 0;
@@ -48,7 +48,7 @@ void	draw_sprites(t_game *g)
 			* TEXWIDTH / g->ray->sprite_width) / 256;
 	if (g->ray->transform_y > 0 && g->ray->stripe > 0
 		&& g->ray->stripe < SCREENWIDTH
-		&& g->ray->transform_y < ZBuffer[g->ray->stripe])
+		&& g->ray->transform_y < g->ray->z_buffer[g->ray->stripe]) // OWUEGHFIYUWEGHYI
 	{
 		y = g->ray->draw_start_y - 1;
 		while (++y < g->ray->draw_end_y)

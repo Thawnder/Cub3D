@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/11/20 15:13:16 by ldeville         ###   ########.fr       */
-=======
-/*   Updated: 2023/11/20 15:17:44 by bpleutin         ###   ########.fr       */
->>>>>>> bb02cc8f3bde49ca26fd7691ba5d1c4ec945fc41
+/*   Updated: 2023/11/20 17:56:56 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +86,9 @@ typedef struct s_ray
 	double		sprite_y;
 	int			tex_num;
 	int			tex_tmp;
-	int			inv_det;
-	int			transform_x;
-	int			transform_y; //this is actually the depth inside the screen, that what Z is in 3D
+	double		inv_det;
+	double		transform_x;
+	double		transform_y; //this is actually the depth inside the screen, that what Z is in 3D
 	int			sprite_screen_x;
 	int			sprite_height; //using 'transformY' instead of the real distance prevents fisheye
 	int			sprite_width;
@@ -119,13 +115,14 @@ typedef struct s_ray
 	int			tex_y;
 	double		tex_pos;
 	int			color;
+	int			*z_buffer;
 }				t_ray;
 
 typedef struct s_sprite
 {
-	int		x;
-	int		y;
-	char	distance;
+	double		x;
+	double		y;
+	double		distance;
 }				t_sprite;
 
 typedef struct s_game
@@ -158,6 +155,7 @@ typedef struct s_game
 	int				y_len;
 	int				x_len;
 	int				parse_map;
+	int				mouse;
 }					t_game;
 
 

@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:26:21 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 15:20:31 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:18:01 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,6 @@ void	sort_sprite(t_game *g)
 	x = -1;
 	while (g->sprite[++x].x)
 	{
-		printf("-distance %i\n", g->sprite[x].distance);
-	}
-
-	x = -1;
-	while (g->sprite[++x].x)
-	{
 		y = -1;
 		while (g->sprite[++y + 1].x)
 		{
@@ -108,12 +102,6 @@ void	sort_sprite(t_game *g)
 			}
 		}
 	}
-
-	x = -1;
-	while (g->sprite[++x].x)
-	{
-		printf("distance %i\n", g->sprite[x].distance);
-	}	
 }
 
 void	render(t_game *g)
@@ -138,6 +126,8 @@ void	render(t_game *g)
 	 		(g->ray->pos_x - g->sprite[x].x) + (g->ray->pos_y - g->sprite[x].y)
 			* (g->ray->pos_y - g->sprite[x].y));
     sort_sprite(g);
+	render_sprites(g);
+	minimap(g);
 	render_frame(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->render->ptr, 0, 0);
 }

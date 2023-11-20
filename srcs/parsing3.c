@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:31:57 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 15:19:40 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:40:24 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	set_sprite(int size, t_game *g)
 		{
 			if (g->map[x][y] == 'A')
 			{
-				g->sprite[i].x = x;
-				g->sprite[i++].y = y;
+				g->sprite[i].x = x + 0.5;
+				g->sprite[i++].y = y + 0.5;
 			}
 		}
 	}
