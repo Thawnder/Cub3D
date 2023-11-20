@@ -6,7 +6,7 @@
 /*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 14:34:30 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:17:44 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ typedef struct s_ray
 	double		deltadist_y;
 	double		perpwalldist;
 	double		wall_x;
-	double		sprite_x;
+	double		sprite_x; //translate sprite position to relative to camera
 	double		sprite_y;
 	int			tex_num;
 	int			tex_tmp;
 	int			inv_det;
 	int			transform_x;
-	int			transform_y;
+	int			transform_y; //this is actually the depth inside the screen, that what Z is in 3D
 	int			sprite_screen_x;
-	int			sprite_height;
+	int			sprite_height; //using 'transformY' instead of the real distance prevents fisheye
 	int			sprite_width;
 	int			draw_start_y;
 	int			draw_end_y;
@@ -98,6 +98,7 @@ typedef struct s_ray
 	int			draw_end_x;
 	int			draw_start;
 	int			draw_end;
+	int			stripe;
 	int			step_x; //what direction to step in x or y-direction (either +1 or -1)
 	int			step_y;
 	int			hit; //was there a wall hit?
@@ -209,6 +210,9 @@ void	set_sidedist(t_game *g);
 void	set_hit_texture(t_game *g);
 void	set_draw_start_end(t_game *g);
 void	set_buffer_color(t_game *g, int x);
+
+/*	sprites.c	*/
+void	render_sprites(t_game *g);
 
 /*	minimap.c	*/
 void	minimap(t_game *g);
