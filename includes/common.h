@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 14:30:43 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:13:16 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_ray
 
 typedef struct s_sprite
 {
-	void	x;
+	int		x;
 	int		y;
 	char	distance;
 }				t_sprite;
@@ -150,6 +150,7 @@ typedef struct s_game
 int		parsing(int argc, char** argv, t_game *game);
 
 /*	parsing2.c	*/
+void	set_sprite(int size, t_game *g);
 int		find_map(int file, int *size);
 int		set_map(int file, char *nfile, t_game *g);
 int		parsing_2(t_game *g);

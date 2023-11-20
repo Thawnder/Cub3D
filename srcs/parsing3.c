@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:31:57 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 14:12:12 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:19:40 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,27 @@ void	debug(t_game *g)
 		printf("|%s|\n", g->map[i++]);
 }
 
-void	set_sprite(int x, int y, t_game *g)
+void	set_sprite(int size, t_game *g)
 {
-	
-	
+	int	i;
+	int	x;
+	int y;
+
+	i = 0;
+	x = -1;
+	g->sprite = ft_calloc(sizeof(t_sprite), size + 1);
+	while (g->map[++x][0])
+	{
+		y = -1;
+		while (g->map[x][++y])
+		{
+			if (g->map[x][y] == 'A')
+			{
+				g->sprite[i].x = x;
+				g->sprite[i++].y = y;
+			}
+		}
+	}
 }
 
 void	doors_map(t_game *g)
