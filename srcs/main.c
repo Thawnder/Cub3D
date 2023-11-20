@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:47:29 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/17 19:56:24 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:01:22 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	if (!parsing_2(game))
 		return (free_all(game), EXIT_FAILURE);
 	render(game);
-	// mlx_mouse_hide(game->mlx, game->win);
+	mlx_mouse_hide(game->mlx, game->win);
 	mlx_hook(game->win, 2, (1L << 0), &key_press, game);
 	mlx_hook(game->win, 3, (1L << 1), &key_release, game);
 	mlx_hook(game->win, 6, (1L << 6), &mouse_interact, game);

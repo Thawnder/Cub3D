@@ -6,13 +6,13 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/18 13:34:23 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:14:41 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
-static int	find_map(int file, int *size)
+int	find_map(int file, int *size)
 {
 	char	*line;
 	int		i;
@@ -95,14 +95,18 @@ void	add_info(t_game *g)
 {
 	int	x;
 	int	y;
+	int	size;
 
 	y = -1;
+	size = 0;
 	g->ray = ft_calloc(sizeof(t_ray), 1);
 	while (g->map[++y][0])
 	{
 		x = 0;
 		while (g->map[y][x])
 		{
+			if (g->map[y][x] == 'A')
+				++size;
 			if (g->map[y][x] == 'N' || g->map[y][x] == 'S'
 				|| g->map[y][x] == 'E' || g->map[y][x] == 'W')
 			{
@@ -115,8 +119,7 @@ void	add_info(t_game *g)
 			x++;
 		}
 	}
-	g->x_len = (int)ft_strlen(g->map[0]);
-	g->y_len = (int)ft_ylen(g->map);
+	set_sprite(size, g);
 }
 
 int	parsing_2(t_game *g)
@@ -124,6 +127,8 @@ int	parsing_2(t_game *g)
 	if (!add_texture(g))
 		return (0);
 	add_info(g);
+	g->x_len = (int)ft_strlen(g->map[0]);
+	g->y_len = (int)ft_ylen(g->map);
 	g->hex[0] = ((g->rgb[0][1] & 0xff) << 16) + ((g->rgb[0][2] & 0xff) << 8)
 		+ (g->rgb[0][3] & 0xff);
 	g->hex[1] = ((g->rgb[1][1] & 0xff) << 16) + ((g->rgb[1][2] & 0xff) << 8)

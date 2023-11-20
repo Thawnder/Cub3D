@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/19 16:33:20 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:30:43 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include <math.h>
 # include <stdint.h>
 
-# define SCREENWIDTH 720
-# define SCREENHEIGHT 480
+# define SCREENWIDTH 1280
+# define SCREENHEIGHT 720
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define MAPWIDTH 24
@@ -37,7 +37,7 @@
 # define PET 5
 # define SPEED_ANIM 20000
 # define ESC 65307
-# define W 11
+# define W 119
 # define A 97
 # define S 115
 # define D 100
@@ -47,8 +47,8 @@
 # define RIGHT 65363
 # define SPACE 32
 
-# define MS 0.01
-# define RS 0.01
+# define MS 0.045
+# define RS 0.04
 
 # define NO 0
 # define SO 1
@@ -104,6 +104,13 @@ typedef struct s_ray
 	int			color;
 }				t_ray;
 
+typedef struct s_sprite
+{
+	void	x;
+	int		y;
+	char	distance;
+}				t_sprite;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -111,6 +118,7 @@ typedef struct s_game
 	char			**map;
 	char			**doors;
 	char			**tex;
+	t_sprite		*sprite;
 	int				rgb[2][3];
 	unsigned int	hex[2];
 	int				has_moved;
@@ -127,9 +135,12 @@ typedef struct s_game
 	int				backward;
 	int				left;
 	int				right;
+	int				cleft;
+	int				cright;
 	int				open;
 	int				y_len;
 	int				x_len;
+	int				parse_map;
 }					t_game;
 
 
@@ -139,6 +150,7 @@ typedef struct s_game
 int		parsing(int argc, char** argv, t_game *game);
 
 /*	parsing2.c	*/
+int		find_map(int file, int *size);
 int		set_map(int file, char *nfile, t_game *g);
 int		parsing_2(t_game *g);
 
@@ -164,6 +176,10 @@ void	go_backward(t_game *g);
 int		mouse_interact(int x, int y, t_game *g);
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
+
+/*	movement2.c	*/
+void	go_left(t_game *g);
+void	go_right(t_game *g);
 
 /*	texture.c	*/
 int		try_texture(t_game *g);

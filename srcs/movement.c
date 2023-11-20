@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/18 13:54:45 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:32:37 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	mouse_interact(int x, int y, t_game *g)
 	if (x == mid_x)
 		return (0);
 	else if (x < mid_x)
-		camera_rotation(g, RS);
+		camera_rotation(g, RS / 2);
 	else if (x > mid_x)
-		camera_rotation(g, -RS);
+		camera_rotation(g, -RS / 2);
 	mlx_mouse_move(g->mlx, g->win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
 	return (0);
 }
@@ -58,10 +58,14 @@ int	key_press(int keycode, t_game *game)
 		game->forward = 1;
 	else if (keycode == S || keycode == DOWN)
 		game->backward = 1;
-	else if (keycode == A || keycode == LEFT)
+	else if (keycode == A)
 		game->left = 1;
-	else if (keycode == D || keycode == RIGHT)
+	else if (keycode == D)
 		game->right = 1;
+	else if (keycode == LEFT)
+		game->cleft = 1;
+	else if (keycode == RIGHT)
+		game->cright = 1;
 	else if (keycode == SPACE)
 		game->open = 1;
 	return (0);
@@ -73,9 +77,13 @@ int	key_release(int keycode, t_game *game)
 		game->forward = 0;
 	else if (keycode == S || keycode == DOWN)
 		game->backward = 0;
-	else if (keycode == A || keycode == LEFT)
+	else if (keycode == A)
 		game->left = 0;
-	else if (keycode == D || keycode == RIGHT)
+	else if (keycode == D)
 		game->right = 0;
+	else if (keycode == LEFT)
+		game->cleft = 0;
+	else if (keycode == RIGHT)
+		game->cright = 0;
 	return (0);
 }
