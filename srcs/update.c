@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:42:30 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 17:57:34 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:55:05 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	anim(t_game *g)
 	static int	anim = 0;
 
 	if (g->has_moved == 1 && --g->has_moved == 0)
-		anim += 600;
-	if (++anim >= 10000)
+		anim += 2800;
+	if (++anim >= 15000)
 	{
 		++g->actual_anim;
 		if (g->actual_anim == PET + 3)
