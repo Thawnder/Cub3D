@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:34:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 09:49:56 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:15:02 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	free_all(t_game *g)
 		free_map(g);
 	if (g->img)
 		ft_free_img(g);
-	if (g->ray->z_buffer)
+	if (g->ray && g->ray->z_buffer)
 		free(g->ray->z_buffer);
 	if (g->sprite)
 		free(g->sprite);

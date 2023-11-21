@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 23:34:23 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:48:46 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	set_rgb(char *line, int id, char *cmp, t_game *g)
 	if (g->rgb[id][2] < 0 || g->rgb[id][2] > 255)
 		return (free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
+	if (other_infos(&line[i], cmp))
+		return (free(line), 0);
 	return (1);
 }
 
@@ -51,7 +53,9 @@ static int	find_rgb(int file, char *cmp, int id, t_game *g)
 			printf("Error\nCan't find element '%s' while parsing\n", cmp), 0);
 	if (!set_rgb(line, id, cmp, g))
 		return (close(file), 0);
-	return (free(line), 1);
+	if (is_double(line, cmp, file))
+		return (0);
+	return (1);
 }
 
 static int	find_element(int file, char *cmp, int id, t_game *g)
@@ -75,7 +79,8 @@ static int	find_element(int file, char *cmp, int id, t_game *g)
 		return (close(file), free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
 	g->tex[id] = strdup(delete_endl(&line[i]));
-	free(line);
+	if (is_double(line, cmp, file))
+		return (0);
 	return (close(file), 1);
 }
 

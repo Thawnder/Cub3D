@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:31:57 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 23:32:11 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:26:17 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	set_orientation(t_game *g, char c)
 		g->ray->dir_x = 1;
 		g->ray->dir_y = 0;
 		g->ray->plane_x = 0;
-		g->ray->plane_y = 0.66;
+		g->ray->plane_y = -0.66;
 	}
 	else if (c == 'N')
 	{

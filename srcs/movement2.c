@@ -6,11 +6,40 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/20 23:30:49 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:53:09 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+
+int	other_infos(char *line, char *cmp)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i] && line[i] != '\n')
+	{
+		if (line[i] < '0' || line[i] > '9')
+			return (printf("Error\nProblem with element '%s' while parsing\n"
+					, cmp), 1);
+	}
+	return (0);
+}
+
+int	is_double(char *line, char *cmp, int file)
+{
+	free(line);
+	line = get_next_line(file);
+	while (line && strncmp(line, cmp, 3))
+	{
+		free(line);
+		line = get_next_line(file);
+	}
+	if (line)
+		return (close(file), free(line),
+			printf("Error\nProblem with element '%s' while parsing\n", cmp), 1);
+	return (0);
+}
 
 void	go_left(t_game *g)
 {

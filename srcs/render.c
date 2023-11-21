@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:26:21 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 23:33:49 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:28:26 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	sort_sprite(t_game *g)
 		y = -1;
 		while (g->sprite[++y + 1].x)
 		{
-			if (g->sprite[y].distance > g->sprite[y + 1].distance)
+			if (g->sprite[y].distance < g->sprite[y + 1].distance)
 			{
 				tmp = g->sprite[y];
 				g->sprite[y] = g->sprite[y + 1];

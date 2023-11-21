@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 10:58:15 by bpleutin         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:43:53 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,8 @@ int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
 
 /*	movement2.c	*/
+int		other_infos(char *line, char *cmp);
+int		is_double(char *line, char *cmp, int file);
 void	go_left(t_game *g);
 void	go_right(t_game *g);
 
