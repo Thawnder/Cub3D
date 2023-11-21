@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bpleutin <bpleutin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 09:56:38 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:58:15 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-# include <float.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -71,26 +70,26 @@ typedef struct s_data
 
 typedef struct s_ray
 {
-	double		camera_x; //x-coordinate in camera space
-	double		raydir_x; // direction 
+	double		camera_x;
+	double		raydir_x;
 	double		raydir_y;
 	double		plane_x;
-	double		plane_y; //the 2d raycaster version of camera plane
-	double		sidedist_x; //length of ray from current position to next x or y-side
+	double		plane_y;
+	double		sidedist_x;
 	double		sidedist_y;
-	double		deltadist_x; //length of ray from one x or y-side to next x or y-side
+	double		deltadist_x;
 	double		deltadist_y;
 	double		perpwalldist;
 	double		wall_x;
-	double		sprite_x; //translate sprite position to relative to camera
+	double		sprite_x;
 	double		sprite_y;
 	int			tex_num;
 	int			tex_tmp;
 	double		inv_det;
 	double		transform_x;
-	double		transform_y; //this is actually the depth inside the screen, that what Z is in 3D
+	double		transform_y;
 	int			sprite_screen_x;
-	int			sprite_height; //using 'transformY' instead of the real distance prevents fisheye
+	int			sprite_height;
 	int			sprite_width;
 	int			draw_start_y;
 	int			draw_end_y;
@@ -99,17 +98,17 @@ typedef struct s_ray
 	int			draw_start;
 	int			draw_end;
 	int			stripe;
-	int			step_x; //what direction to step in x or y-direction (either +1 or -1)
+	int			step_x;
 	int			step_y;
-	int			hit; //was there a wall hit?
-	int			side; //was a NS or a EW wall hit?
+	int			hit;
+	int			side;
 	int			line_height;
 	double		step;
-	double		pos_x; //x and y start position
+	double		pos_x;
 	double		pos_y;
-	double		dir_x; //x and y start position
+	double		dir_x;
 	double		dir_y;
-	int			map_x; //which box of the map we're in
+	int			map_x;
 	int			map_y;
 	int			tex_x;
 	int			tex_y;
@@ -157,11 +156,8 @@ typedef struct s_game
 	int				mouse;
 }					t_game;
 
-
-//int32_t	g_buffer[SCREENHEIGHT][SCREENWIDTH];
-
 /*	parsing.c	*/
-int		parsing(int argc, char** argv, t_game *game);
+int		parsing(int argc, char **argv, t_game *game);
 
 /*	parsing2.c	*/
 void	set_sprite(int size, t_game *g);
@@ -181,7 +177,7 @@ int		check_map(t_game *g);
 /*	utils.c	*/
 int		space_until(char *str);
 void	set_line(t_game *g, char *line, int y);
-char*	set_sized_line(char *tmp, char *old, int max);
+char	*set_sized_line(char *tmp, char *old, int max);
 int		ft_ylen(char **map);
 char	*delete_endl(char *str);
 
