@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:43:18 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/20 23:19:58 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:45:30 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	generate_minimap(t_game *g)
 		x = 4;
 		while (x < 4 * g->x_len + 2)
 		{
+			if (x >= SCREENWIDTH - 1)
+				break ;
 			color = find_color(g->map[(int)(y / 4 - 1)][(int)(x / 4 - 1)]);
 			g->buffer[y][x] = color;
 			x++;

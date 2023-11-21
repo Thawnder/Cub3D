@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 11:48:46 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:01:30 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static int	find_element(int file, char *cmp, int id, t_game *g)
 			printf("Error\nCan't find element '%s' while parsing\n", cmp), 0);
 	while (line[i] && line[i] == ' ')
 		i++;
-	if (!line[i] || i >= g->parse_map)
+	if (!line[i] || i >= g->parse_map || strcmp(&line[ft_strlen(line) - 5]
+			, ".xpm\n") > 0)
 		return (close(file), free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
 	g->tex[id] = strdup(delete_endl(&line[i]));
