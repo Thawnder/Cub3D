@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 15:01:30 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:16:47 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	find_rgb(int file, char *cmp, int id, t_game *g)
 			printf("Error\nCan't find element '%s' while parsing\n", cmp), 0);
 	if (!set_rgb(line, id, cmp, g))
 		return (close(file), 0);
-	if (is_double(line, cmp, file))
+	if (is_double(line, cmp, file, 2))
 		return (0);
 	return (1);
 }
@@ -80,7 +80,7 @@ static int	find_element(int file, char *cmp, int id, t_game *g)
 		return (close(file), free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
 	g->tex[id] = strdup(delete_endl(&line[i]));
-	if (is_double(line, cmp, file))
+	if (is_double(line, cmp, file, 3))
 		return (0);
 	return (close(file), 1);
 }
@@ -110,8 +110,8 @@ int	parsing(int argc, char **argv, t_game *game)
 	if (strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub"))
 		return (printf("Error\nPlease enter a '.cub' map'\n"), 0);
 	file = open(argv[1], O_RDONLY);
-	if (!file)
-		return (printf("Error\nCould not open %s'\n", argv[1]), 0);
+	if (file == -1)
+		return (printf("Error\nCould not open '%s'\n", argv[1]), 0);
 	if (!do_parsing(file, argv[1], game))
 		return (close(file), 0);
 	if (!check_map(game))

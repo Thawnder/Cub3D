@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/21 11:53:09 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:16:30 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	other_infos(char *line, char *cmp)
 	return (0);
 }
 
-int	is_double(char *line, char *cmp, int file)
+int	is_double(char *line, char *cmp, int file, int size)
 {
+	printf("LINE :%s CMP :%s\n", line, cmp);
 	free(line);
 	line = get_next_line(file);
-	while (line && strncmp(line, cmp, 3))
+	while (line && strncmp(line, cmp, size))
 	{
 		free(line);
 		line = get_next_line(file);

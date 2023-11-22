@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:26:21 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 14:45:24 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:54:50 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static void	render_frame(t_game *g)
 			if (g->buffer[y][x] > 0)
 				g->render->addr[pixel] = g->buffer[y][x];
 			else if (y < SCREENHEIGHT / 2)
-				g->render->addr[pixel] = g->hex[0];
-			else if (y < SCREENHEIGHT -1)
 				g->render->addr[pixel] = g->hex[1];
+			else if (y < SCREENHEIGHT -1)
+				g->render->addr[pixel] = g->hex[0];
 			x++;
 		}
 		y++;

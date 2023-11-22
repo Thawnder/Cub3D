@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:46:35 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/21 11:43:53 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:16:45 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define SPEED_ANIM 20000
 # define ESC 65307
 # define W 119
+# define Q 113
 # define A 97
 # define S 115
 # define D 100
@@ -154,6 +155,7 @@ typedef struct s_game
 	int				x_len;
 	int				parse_map;
 	int				mouse;
+	int				mouse_input;
 }					t_game;
 
 /*	parsing.c	*/
@@ -190,7 +192,7 @@ int		key_press(int keycode, t_game *game);
 
 /*	movement2.c	*/
 int		other_infos(char *line, char *cmp);
-int		is_double(char *line, char *cmp, int file);
+int		is_double(char *line, char *cmp, int file, int size);
 void	go_left(t_game *g);
 void	go_right(t_game *g);
 

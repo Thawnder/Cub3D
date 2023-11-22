@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:31:40 by bpleutin          #+#    #+#             */
-/*   Updated: 2023/11/21 10:26:22 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:13:02 by ldeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,20 @@ int	mouse_interact(int x, int y, t_game *g)
 
 	(void)y;
 	mid_x = SCREENWIDTH / 2;
-	if (x == mid_x)
-		return (0);
-	else if (x < mid_x)
-		g->cleft = 1;
-	else if (x > mid_x)
-		g->cright = 1;
-	g->mouse = 1;
-	mlx_mouse_move(g->mlx, g->win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
+	if (g->mouse_input == 1)
+	{
+		mlx_mouse_hide(g->mlx, g->win);
+		if (x == mid_x)
+			return (0);
+		else if (x < mid_x)
+			g->cleft = 1;
+		else if (x > mid_x)
+			g->cright = 1;
+		g->mouse = 1;
+		mlx_mouse_move(g->mlx, g->win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
+	}
+	else
+		mlx_mouse_show(g->mlx, g->win);
 	return (0);
 }
 
@@ -69,6 +75,8 @@ int	key_press(int keycode, t_game *game)
 		game->cright = 1;
 	else if (keycode == SPACE)
 		game->open = 1;
+	else if (keycode == Q)
+		game->mouse_input *= -1;
 	return (0);
 }
 
