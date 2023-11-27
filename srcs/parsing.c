@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:35:15 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/22 10:16:47 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:54:35 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static int	find_rgb(int file, char *cmp, int id, t_game *g)
 	char	*line;
 
 	line = get_next_line(file);
-	while (line && strncmp(line, cmp, 2))
+	while (line && ft_strncmp(line, cmp, 2))
 	{
 		free(line);
 		line = get_next_line(file);
 	}
-	if (!line || strncmp(line, cmp, 2))
+	if (!line || ft_strncmp(line, cmp, 2))
 		return (close(file), free(line),
 			printf("Error\nCan't find element '%s' while parsing\n", cmp), 0);
 	if (!set_rgb(line, id, cmp, g))
@@ -65,21 +65,22 @@ static int	find_element(int file, char *cmp, int id, t_game *g)
 
 	i = 2;
 	line = get_next_line(file);
-	while (line && strncmp(line, cmp, 3))
+	while (line && ft_strncmp(line, cmp, 3))
 	{
 		free(line);
 		line = get_next_line(file);
 	}
-	if (!line || strncmp(line, cmp, 3))
+	if (!line || ft_strncmp(line, cmp, 3))
 		return (close(file), free(line),
 			printf("Error\nCan't find element '%s' while parsing\n", cmp), 0);
 	while (line[i] && line[i] == ' ')
 		i++;
-	if (!line[i] || i >= g->parse_map || strcmp(&line[ft_strlen(line) - 5]
+	printf("line: %s", &line[i]);
+	if (!line[i] || ft_strcmp(&line[ft_strlen(line) - 5]
 			, ".xpm\n") > 0)
 		return (close(file), free(line),
 			printf("Error\nProblem with element '%s' while parsing\n", cmp), 0);
-	g->tex[id] = strdup(delete_endl(&line[i]));
+	g->tex[id] = ft_strdup(delete_endl(&line[i]));
 	if (is_double(line, cmp, file, 3))
 		return (0);
 	return (close(file), 1);
@@ -88,7 +89,7 @@ static int	find_element(int file, char *cmp, int id, t_game *g)
 static int	do_parsing(int file, char *nfile, t_game *g)
 {
 	find_map(open(nfile, O_RDONLY), &g->parse_map);
-	g->tex = calloc(sizeof(char *), 4);
+	g->tex = ft_calloc(sizeof(char *), 4);
 	if ((close(file) || !find_element(open(nfile, O_RDONLY), "NO ", NO, g))
 		|| !find_element(open(nfile, O_RDONLY), "SO ", SO, g)
 		|| !find_element(open(nfile, O_RDONLY), "WE ", WE, g)
@@ -107,7 +108,7 @@ int	parsing(int argc, char **argv, t_game *game)
 
 	if (argc != 2)
 		return (printf("Error\nEnter valid argument: ./cub3d <Map>.cub'\n"), 0);
-	if (strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub"))
+	if (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub"))
 		return (printf("Error\nPlease enter a '.cub' map'\n"), 0);
 	file = open(argv[1], O_RDONLY);
 	if (file == -1)

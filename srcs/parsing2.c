@@ -6,7 +6,7 @@
 /*   By: ldeville <ldeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:38:32 by ldeville          #+#    #+#             */
-/*   Updated: 2023/11/22 10:09:36 by ldeville         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:47:02 by bpleutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,10 @@ int	parsing_2(t_game *g)
 	add_info(g, size);
 	g->x_len = (int)ft_strlen(g->map[0]);
 	g->y_len = (int)ft_ylen(g->map);
-	g->hex[0] = ((g->rgb[0][1] & 0xff) << 16) + ((g->rgb[0][2] & 0xff) << 8)
-		+ (g->rgb[0][3] & 0xff);
-	g->hex[1] = ((g->rgb[1][1] & 0xff) << 16) + ((g->rgb[1][2] & 0xff) << 8)
-		+ (g->rgb[1][3] & 0xff);
+	g->hex[0] = ((g->rgb[0][0] & 0xff) << 16) + ((g->rgb[0][1] & 0xff) << 8)
+		+ (g->rgb[0][2] & 0xff);
+	g->hex[1] = ((g->rgb[1][0] & 0xff) << 16) + ((g->rgb[1][1] & 0xff) << 8)
+		+ (g->rgb[1][2] & 0xff);
 	doors_map(g);
 	g->actual_anim = PET;
 	g->ray->z_buffer = ft_calloc(sizeof(double), SCREENWIDTH + 1);

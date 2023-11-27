@@ -1,4 +1,4 @@
-NO ./textures/bluestone.xpm
+NO                                      ./textures/bluestone.xpm
 
 WE ./textures/colorstone.xpm
 
@@ -6,8 +6,8 @@ SO ./textures/greystone.xpm
 
 EA ./textures/redbrick.xpm
 
-C 225,30,0
-F 250,100,0
+C 0,0,0
+F 255,255,255
 
         1111111111111111111111111
         1000000000110000000000001

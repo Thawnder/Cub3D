@@ -1,5 +1,5 @@
 MAKEFLAGS += --silent
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_PATH = includes/Libft
